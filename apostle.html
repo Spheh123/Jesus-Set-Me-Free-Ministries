@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jesus Set Me Free Ministries</title>
+    <title>Our Apostle - Jesus Set Me Free Ministries</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -109,6 +109,14 @@
             position: relative;
         }
         
+        nav ul li a.active {
+            color: var(--secondary);
+        }
+        
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
         nav ul li a:after {
             content: '';
             position: absolute;
@@ -137,55 +145,40 @@
             cursor: pointer;
         }
         
-        /* Hero Section */
-        .hero {
+        /* Page Header */
+        .page-header {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             color: white;
-            padding: 6rem 0;
+            padding: 5rem 0;
             text-align: center;
         }
         
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+        .page-header h1 {
+            font-size: 3rem;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1rem;
         }
         
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 2.5rem;
-            font-weight: 300;
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 0.5rem;
         }
         
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 1rem 2rem;
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--secondary);
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .btn:hover {
-            background-color: #a87c50;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid white;
-            margin-left: 1rem;
-        }
-        
-        .btn-outline:hover {
-            background: white;
-            color: var(--primary);
+        .breadcrumb i {
+            font-size: 0.8rem;
         }
         
         /* Section Styles */
@@ -209,135 +202,85 @@
             border-radius: 2px;
         }
         
-        /* About Section */
-        .about-content {
+        /* Apostle Profile */
+        .apostle-profile {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: start;
+        }
+        
+        .apostle-image-container {
+            position: relative;
         }
         
         .apostle-image {
             width: 100%;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
         }
         
-        .apostle-image:hover {
-            transform: scale(1.02);
-        }
-        
-        .apostle-caption {
+        .apostle-title {
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             font-style: italic;
             color: var(--primary);
             font-weight: 500;
+            font-size: 1.2rem;
         }
         
-        .vision-mission {
+        .apostle-bio {
             background: white;
             padding: 2.5rem;
             border-radius: 10px;
-            margin: 1.5rem 0;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--secondary);
         }
         
-        .vision-mission h3 {
+        .bio-section {
+            margin-bottom: 2rem;
+        }
+        
+        .bio-section h3 {
             color: var(--primary);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 10px;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
         }
         
-        .vision-mission h3 i {
+        .bio-section h3 i {
             color: var(--secondary);
         }
         
-        /* Features Section */
-        .features {
+        /* Ministry Section */
+        .ministry {
             background-color: var(--light);
         }
         
-        .features-grid {
+        .ministry-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
         }
         
-        .feature-card {
+        .ministry-text {
             background: white;
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
         }
         
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
+        .verse {
+            font-style: italic;
             color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Events Section */
-        .event-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            display: flex;
-        }
-        
-        .event-img {
-            flex: 1;
-            min-height: 250px;
-            overflow: hidden;
-        }
-        
-        .event-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .event-img:hover img {
-            transform: scale(1.05);
-        }
-        
-        .event-details {
-            flex: 1;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .event-date {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
-            color: white;
             text-align: center;
-        }
-        
-        .cta .section-title {
-            color: white;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            background: rgba(26, 75, 140, 0.05);
         }
         
         /* Footer */
@@ -406,12 +349,8 @@
         
         /* Responsive Styles */
         @media (max-width: 992px) {
-            .about-content {
+            .apostle-profile, .ministry-content {
                 grid-template-columns: 1fr;
-            }
-            
-            .event-card {
-                flex-direction: column;
             }
         }
         
@@ -445,22 +384,8 @@
                 display: flex;
             }
             
-            .hero h1 {
+            .page-header h1 {
                 font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .btn {
-                display: block;
-                margin: 0.5rem auto;
-                width: 80%;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
             }
         }
     </style>
@@ -486,7 +411,7 @@
                 <ul id="menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="apostle.html">Our Apostle</a></li>
+                    <li><a href="apostle.html" class="active">Our Apostle</a></li>
                     <li><a href="events.html">Events</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="donate.html">Donate</a></li>
@@ -496,108 +421,77 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Page Header -->
+    <section class="page-header">
         <div class="container">
-            <h1>Experience Freedom in Christ</h1>
-            <p>Proclaiming freedom, restoring lives, and sharing God's love through the Gospel of Jesus Christ</p>
-            <div>
-                <a href="donate.html" class="btn">Support Our Mission</a>
-                <a href="contact.html" class="btn btn-outline">Join Us</a>
-            </div>
+            <h1>Our Apostle</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><i class="fas fa-chevron-right"></i></li>
+                <li>Our Apostle</li>
+            </ul>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
+    <!-- Apostle Profile Section -->
+    <section>
         <div class="container">
-            <h2 class="section-title">About Our Ministry</h2>
-            <div class="about-content">
-                <div>
-                    <p>Jesus Set Me Free Ministries is a registered non-profit organization dedicated to spreading the Gospel and serving communities in need. We believe in the transformative power of Jesus Christ to set people free from spiritual, emotional, and physical bondage.</p>
-                    
-                    <div class="vision-mission">
-                        <h3><i class="fas fa-eye"></i> Our Vision</h3>
-                        <p>To restore and share love as God loved the world, proclaiming His favor and setting the captives free.</p>
-                    </div>
-                    
-                    <div class="vision-mission">
-                        <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
-                        <p>Proclamation of the gospel to those who are lost, calling them to repentance and faith in Christ Jesus.</p>
-                    </div>
-                    
-                    <a href="about.html" class="btn" style="margin-top: 1.5rem;">Learn More About Us</a>
-                </div>
-                
-                <div>
+            <h2 class="section-title">Apostle Richard Sekgobela</h2>
+            <div class="apostle-profile">
+                <div class="apostle-image-container">
                     <img src="images/apostle-richard.jpg" alt="Apostle Richard Sekgobela" class="apostle-image">
-                    <div class="apostle-caption">Apostle Richard Sekgobela - Founder & Visionary</div>
-                    <a href="apostle.html" class="btn" style="margin-top: 1.5rem; display: block; text-align: center;">Meet Our Apostle</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Our Ministries</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cross"></i>
-                    </div>
-                    <h3>Worship Services</h3>
-                    <p>Join us for powerful worship services where we experience God's presence and hear from His Word.</p>
+                    <div class="apostle-title">Founder & Visionary of Jesus Set Me Free Ministries</div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
+                <div class="apostle-bio">
+                    <div class="bio-section">
+                        <h3><i class="fas fa-cross"></i> Spiritual Journey</h3>
+                        <p>Apostle Richard Sekgobela was born in Alverton Village, outside Burgersfort in Limpopo. He is the second-born in his family and from birth, his life carried a special mark of God's hand.</p>
+                        <p>While still in his mother's womb, he survived an attack that led to an emergency operation. As a newborn, he battled severe health challenges, and his parents feared he would not survive. But by God's grace, he overcame—marked as the only child among his siblings to endure such spiritual attacks.</p>
+                        <p>From a young age, Apostle Richard was a unique and prophetic child. At just seven years old, he began foretelling events and prophesying accurately, leaving many in awe. His family was told he would one day become a great prophet.</p>
+                        <p>In 2011, he encountered the life-changing power of Jesus Christ and accepted Him as Lord and Savior. From that moment, everything began to make sense, and he never looked back. His prophetic gift became clearer, and God began to use him to impact lives.</p>
                     </div>
-                    <h3>Charity Outreach</h3>
-                    <p>We extend God's love through practical assistance to those in need in our communities.</p>
+                    
+                    <div class="bio-section">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <p>Alongside his spiritual journey, Apostle Richard also pursued his education with diligence. He completed his primary education at Morethushe Primary School and his secondary education at Lehlabile Secondary School.</p>
+                        <p>He later studied Marketing and Communication Management at CN Phatudi TVET College, and went on to further his studies by obtaining a Diploma in Environmental and Safety Management from Athena Global Education.</p>
+                        <p>This background has equipped him with both spiritual insight and practical leadership skills to guide his ministry effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministry Section -->
+    <section class="ministry">
+        <div class="container">
+            <h2 class="section-title">The Ministry Calling</h2>
+            <div class="ministry-content">
+                <div class="ministry-text">
+                    <p>At the age of 30, the Lord spoke to him clearly, instructing him to start a ministry. In 2022, he received a divine confirmation when the Lord directed him to meet Prophet V.C. Zitha in Phalaborwa, where he was given a word of direction that solidified his assignment.</p>
+                    
+                    <div class="verse">
+                        "So if the Son sets you free, you will be free indeed." - John 8:36
+                    </div>
+                    
+                    <p>Today, Apostle Richard Sekgobela is a servant of God called to set the children of God free through the preaching of purity, holiness, and righteousness. He is passionate about seeing lives transformed, destinies restored, and the power of God revealed through the Gospel of Jesus Christ.</p>
+                    
+                    <p>His ministry is marked by prayer, prophecy, deliverance, and a burning desire to prepare God's people for revival. Beyond the pulpit, he is a mentor, counselor, entrepreneur, and encourager to many—walking alongside people in both their struggles and their victories.</p>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tv"></i>
-                    </div>
-                    <h3>Heart of the World TV</h3>
-                    <p>Our media ministry spreading the Gospel through television and online platforms.</p>
+                <div class="ministry-text">
+                    <h3><i class="fas fa-church"></i> Ministry Vision</h3>
+                    <p>Through Jesus Set Me Free Ministries, Apostle Richard leads a Christ-centered, Spirit-filled movement with a vision to win souls, raise disciples, and build a generation that walks in holiness and the power of God.</p>
+                    
+                    <h3><i class="fas fa-hands-helping"></i> Ministry Impact</h3>
+                    <p>The mission of the ministry is to bring healing, deliverance, and restoration to individuals, families, and communities through the uncompromised Word of God.</p>
+                    
+                    <p>Apostle Richard believes that every child of God has a divine destiny, and through the work of this ministry, countless lives have been transformed, chains broken, and testimonies birthed.</p>
+                    
+                    <p>His prayer is to see the church rise as a beacon of light—reviving nations and preparing the world for the coming of our Lord Jesus Christ. His vision is to see revival break out, destinies unlocked, and a generation rising up to fulfill God's purpose.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events">
-        <div class="container">
-            <h2 class="section-title">Upcoming Events</h2>
-            
-            <div class="event-card">
-                <div class="event-img">
-                    <img src="images/revival-pamphlet.jpg" alt="Holy Spirit Encounter Revival Pamphlet">
-                </div>
-                <div class="event-details">
-                    <h3>The Holy Spirit Encounter</h3>
-                    <div class="event-date">August 29-31, 2025</div>
-                    <p>Join us for a powerful 3-day revival in Kroonstad, Free State. Experience the transformative power of the Holy Spirit through worship, prayer, and the preaching of God's Word.</p>
-                    <p><strong>Theme:</strong> The Holy Spirit Encounter</p>
-                    <p><strong>Location:</strong> Kroonstad, Free State, South Africa</p>
-                    <p><strong>Time:</strong> Daily at 6:00 PM</p>
-                    <a href="events.html" class="btn" style="margin-top: 1rem; align-self: flex-start;">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2 class="section-title">Join Us in Making a Difference</h2>
-            <p>Your support enables us to continue our mission of spreading the Gospel and serving communities in need.</p>
-            <a href="donate.html" class="btn" style="margin-top: 2rem;">Donate Now</a>
         </div>
     </section>
 

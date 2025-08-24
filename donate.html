@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jesus Set Me Free Ministries</title>
+    <title>Donate - Jesus Set Me Free Ministries</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -109,6 +109,14 @@
             position: relative;
         }
         
+        nav ul li a.active {
+            color: var(--secondary);
+        }
+        
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
         nav ul li a:after {
             content: '';
             position: absolute;
@@ -137,55 +145,40 @@
             cursor: pointer;
         }
         
-        /* Hero Section */
-        .hero {
+        /* Page Header */
+        .page-header {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             color: white;
-            padding: 6rem 0;
+            padding: 5rem 0;
             text-align: center;
         }
         
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+        .page-header h1 {
+            font-size: 3rem;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1rem;
         }
         
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 2.5rem;
-            font-weight: 300;
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 0.5rem;
         }
         
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 1rem 2rem;
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--secondary);
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .btn:hover {
-            background-color: #a87c50;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid white;
-            margin-left: 1rem;
-        }
-        
-        .btn-outline:hover {
-            background: white;
-            color: var(--primary);
+        .breadcrumb i {
+            font-size: 0.8rem;
         }
         
         /* Section Styles */
@@ -209,135 +202,124 @@
             border-radius: 2px;
         }
         
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        
-        .apostle-image {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .apostle-image:hover {
-            transform: scale(1.02);
-        }
-        
-        .apostle-caption {
+        /* Donate Content */
+        .donate-intro {
             text-align: center;
-            margin-top: 1rem;
-            font-style: italic;
-            color: var(--primary);
-            font-weight: 500;
+            max-width: 800px;
+            margin: 0 auto 3rem;
         }
         
-        .vision-mission {
+        .donate-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .donate-option {
             background: white;
             padding: 2.5rem;
             border-radius: 10px;
-            margin: 1.5rem 0;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--secondary);
+            text-align: center;
         }
         
-        .vision-mission h3 {
+        .donate-option h3 {
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .donate-option h3 i {
+            color: var(--secondary);
+        }
+        
+        .bank-details {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+        
+        .bank-details p {
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .vision-mission h3 i {
+        .bank-details i {
             color: var(--secondary);
+            width: 20px;
         }
         
-        /* Features Section */
-        .features {
+        /* Partner Form */
+        .partner-form-section {
             background-color: var(--light);
         }
         
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .feature-card {
+        .form-container {
             background: white;
-            padding: 2rem;
+            padding: 3rem;
             border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
+        .form-group {
             margin-bottom: 1.5rem;
         }
         
-        /* Events Section */
-        .event-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            display: flex;
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
         }
         
-        .event-img {
-            flex: 1;
-            min-height: 250px;
-            overflow: hidden;
-        }
-        
-        .event-img img {
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
         }
         
-        .event-img:hover img {
-            transform: scale(1.05);
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
         }
         
-        .event-details {
-            flex: 1;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .event-date {
-            color: var(--accent);
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
             font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
         }
         
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
-            color: white;
+        .btn:hover {
+            background-color: #a87c50;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .btn-center {
+            display: block;
+            margin: 0 auto;
             text-align: center;
-        }
-        
-        .cta .section-title {
-            color: white;
         }
         
         /* Footer */
@@ -405,16 +387,6 @@
         }
         
         /* Responsive Styles */
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .event-card {
-                flex-direction: column;
-            }
-        }
-        
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
@@ -445,22 +417,12 @@
                 display: flex;
             }
             
-            .hero h1 {
+            .page-header h1 {
                 font-size: 2.5rem;
             }
             
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .btn {
-                display: block;
-                margin: 0.5rem auto;
-                width: 80%;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
+            .form-container {
+                padding: 2rem;
             }
         }
     </style>
@@ -489,115 +451,128 @@
                     <li><a href="apostle.html">Our Apostle</a></li>
                     <li><a href="events.html">Events</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="donate.html" class="active">Donate</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Page Header -->
+    <section class="page-header">
         <div class="container">
-            <h1>Experience Freedom in Christ</h1>
-            <p>Proclaiming freedom, restoring lives, and sharing God's love through the Gospel of Jesus Christ</p>
-            <div>
-                <a href="donate.html" class="btn">Support Our Mission</a>
-                <a href="contact.html" class="btn btn-outline">Join Us</a>
-            </div>
+            <h1>Support Our Ministry</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><i class="fas fa-chevron-right"></i></li>
+                <li>Donate</li>
+            </ul>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
+    <!-- Donate Section -->
+    <section>
         <div class="container">
-            <h2 class="section-title">About Our Ministry</h2>
-            <div class="about-content">
-                <div>
-                    <p>Jesus Set Me Free Ministries is a registered non-profit organization dedicated to spreading the Gospel and serving communities in need. We believe in the transformative power of Jesus Christ to set people free from spiritual, emotional, and physical bondage.</p>
-                    
-                    <div class="vision-mission">
-                        <h3><i class="fas fa-eye"></i> Our Vision</h3>
-                        <p>To restore and share love as God loved the world, proclaiming His favor and setting the captives free.</p>
-                    </div>
-                    
-                    <div class="vision-mission">
-                        <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
-                        <p>Proclamation of the gospel to those who are lost, calling them to repentance and faith in Christ Jesus.</p>
-                    </div>
-                    
-                    <a href="about.html" class="btn" style="margin-top: 1.5rem;">Learn More About Us</a>
-                </div>
-                
-                <div>
-                    <img src="images/apostle-richard.jpg" alt="Apostle Richard Sekgobela" class="apostle-image">
-                    <div class="apostle-caption">Apostle Richard Sekgobela - Founder & Visionary</div>
-                    <a href="apostle.html" class="btn" style="margin-top: 1.5rem; display: block; text-align: center;">Meet Our Apostle</a>
-                </div>
+            <div class="donate-intro">
+                <h2 class="section-title">Your Support Makes a Difference</h2>
+                <p>Your generous donations help us continue our mission of spreading the Gospel and serving communities in need. Through your support, we can bring healing, deliverance, and restoration to individuals, families, and communities through the uncompromised Word of God.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Our Ministries</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cross"></i>
-                    </div>
-                    <h3>Worship Services</h3>
-                    <p>Join us for powerful worship services where we experience God's presence and hear from His Word.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Charity Outreach</h3>
-                    <p>We extend God's love through practical assistance to those in need in our communities.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tv"></i>
-                    </div>
-                    <h3>Heart of the World TV</h3>
-                    <p>Our media ministry spreading the Gospel through television and online platforms.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events">
-        <div class="container">
-            <h2 class="section-title">Upcoming Events</h2>
             
-            <div class="event-card">
-                <div class="event-img">
-                    <img src="images/revival-pamphlet.jpg" alt="Holy Spirit Encounter Revival Pamphlet">
+            <div class="donate-options">
+                <div class="donate-option">
+                    <h3><i class="fas fa-building"></i> Local Donations (South Africa)</h3>
+                    <div class="bank-details">
+                        <p><i class="fas fa-university"></i> <strong>Capitec Bank</strong></p>
+                        <p><i class="fas fa-hashtag"></i> Acc Number: 1343510307</p>
+                        <p><i class="fas fa-code-branch"></i> Branch Code: 470010</p>
+                        <p><i class="fas fa-globe"></i> Swift Code: CABLZAJJ</p>
+                    </div>
+                    
+                    <div class="bank-details">
+                        <p><i class="fas fa-building"></i> <strong>FNB</strong></p>
+                        <p><i class="fas fa-hashtag"></i> Acc Number: 63024230805</p>
+                        <p><i class="fas fa-globe"></i> Swift Code: FIRNZAJJ</p>
+                    </div>
                 </div>
-                <div class="event-details">
-                    <h3>The Holy Spirit Encounter</h3>
-                    <div class="event-date">August 29-31, 2025</div>
-                    <p>Join us for a powerful 3-day revival in Kroonstad, Free State. Experience the transformative power of the Holy Spirit through worship, prayer, and the preaching of God's Word.</p>
-                    <p><strong>Theme:</strong> The Holy Spirit Encounter</p>
-                    <p><strong>Location:</strong> Kroonstad, Free State, South Africa</p>
-                    <p><strong>Time:</strong> Daily at 6:00 PM</p>
-                    <a href="events.html" class="btn" style="margin-top: 1rem; align-self: flex-start;">Learn More</a>
+                
+                <div class="donate-option">
+                    <h3><i class="fas fa-globe"></i> International Donations</h3>
+                    <div class="bank-details">
+                        <p><i class="fas fa-building"></i> <strong>Mukuru Money Bank</strong></p>
+                        <p><i class="fas fa-code-branch"></i> Access Bank Branch: 410506</p>
+                        <p><i class="fas fa-hashtag"></i> ACC Number: 51703135966</p>
+                    </div>
+                    
+                    <div class="bank-details">
+                        <p><i class="fab fa-paypal"></i> <strong>PayPal</strong></p>
+                        <p><i class="fas fa-envelope"></i> apostlerichard9@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="donate-option">
+                    <h3><i class="fas fa-mobile-alt"></i> Mobile Banking</h3>
+                    <p>You can also donate via mobile banking:</p>
+                    <div class="bank-details">
+                        <p><i class="fas fa-phone"></i> <strong>Phone Numbers:</strong></p>
+                        <p>+27787952184</p>
+                        <p>+27791986116</p>
+                        <p><i class="fas fa-comment"></i> Reference: Donation</p>
+                    </div>
+                    
+                    <div class="bank-details">
+                        <p><i class="fas fa-hands-helping"></i> <strong>Partner & Offering</strong></p>
+                        <p><i class="fas fa-book"></i> Luke 8:3</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
+    <!-- Partner Form Section -->
+    <section class="partner-form-section">
         <div class="container">
-            <h2 class="section-title">Join Us in Making a Difference</h2>
-            <p>Your support enables us to continue our mission of spreading the Gospel and serving communities in need.</p>
-            <a href="donate.html" class="btn" style="margin-top: 2rem;">Donate Now</a>
+            <h2 class="section-title">Become a Ministry Partner</h2>
+            <div class="form-container">
+                <form id="partnerForm" action="forms/process_form.php" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="partnership">Type of Partnership *</label>
+                        <select id="partnership" name="partnership" required>
+                            <option value="">Select an option</option>
+                            <option value="prayer">Prayer Partner</option>
+                            <option value="financial">Financial Partner</option>
+                            <option value="volunteer">Volunteer</option>
+                            <option value="both">Both Financial and Prayer</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message (Optional)</label>
+                        <textarea id="message" name="message" placeholder="Tell us how you'd like to support the ministry..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-center">Submit Partnership Request</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -655,6 +630,24 @@
         // Mobile menu toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             document.getElementById('menu').classList.toggle('show');
+        });
+        
+        // Form validation
+        document.getElementById('partnerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Basic validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const partnership = document.getElementById('partnership').value;
+            
+            if (name && email && phone && partnership) {
+                // Form is valid, you can submit it
+                alert('Thank you for your partnership request! We will contact you soon.');
+                this.submit();
+            } else {
+                alert('Please fill in all required fields.');
+            }
         });
     </script>
 </body>

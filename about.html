@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Jesus Set Me Free Ministries</title>
+    <title>Jesus Set Me Free Ministries</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -109,14 +109,6 @@
             position: relative;
         }
         
-        nav ul li a.active {
-            color: var(--secondary);
-        }
-        
-        nav ul li a.active:after {
-            width: 100%;
-        }
-        
         nav ul li a:after {
             content: '';
             position: absolute;
@@ -145,40 +137,55 @@
             cursor: pointer;
         }
         
-        /* Page Header */
-        .page-header {
+        /* Hero Section */
+        .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             color: white;
-            padding: 5rem 0;
+            padding: 6rem 0;
             text-align: center;
         }
         
-        .page-header h1 {
-            font-size: 3rem;
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
             color: white;
-            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 0.5rem;
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
         }
         
-        .breadcrumb li {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .breadcrumb a {
-            color: var(--secondary);
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 1rem 2rem;
             text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .breadcrumb i {
-            font-size: 0.8rem;
+        .btn:hover {
+            background-color: #a87c50;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
         }
         
         /* Section Styles */
@@ -202,7 +209,7 @@
             border-radius: 2px;
         }
         
-        /* About Content */
+        /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -250,18 +257,18 @@
             color: var(--secondary);
         }
         
-        /* Values Section */
-        .values {
+        /* Features Section */
+        .features {
             background-color: var(--light);
         }
         
-        .values-grid {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
         
-        .value-card {
+        .feature-card {
             background: white;
             padding: 2rem;
             border-radius: 10px;
@@ -270,28 +277,67 @@
             transition: transform 0.3s ease;
         }
         
-        .value-card:hover {
+        .feature-card:hover {
             transform: translateY(-10px);
         }
         
-        .value-icon {
+        .feature-icon {
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
         }
         
-        /* Statement of Faith */
-        .faith-content {
+        /* Events Section */
+        .event-card {
             background: white;
-            padding: 3rem;
             border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
         }
         
-        .faith-point {
-            margin-bottom: 2rem;
-            padding-left: 2rem;
-            border-left: 3px solid var(--secondary);
+        .event-img {
+            flex: 1;
+            min-height: 250px;
+            overflow: hidden;
+        }
+        
+        .event-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .event-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .event-details {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .event-date {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta .section-title {
+            color: white;
         }
         
         /* Footer */
@@ -363,6 +409,10 @@
             .about-content {
                 grid-template-columns: 1fr;
             }
+            
+            .event-card {
+                flex-direction: column;
+            }
         }
         
         @media (max-width: 768px) {
@@ -395,8 +445,22 @@
                 display: flex;
             }
             
-            .page-header h1 {
+            .hero h1 {
                 font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 0.5rem auto;
+                width: 80%;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
             }
         }
     </style>
@@ -421,7 +485,7 @@
             <nav>
                 <ul id="menu">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="apostle.html">Our Apostle</a></li>
                     <li><a href="events.html">Events</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
@@ -432,27 +496,25 @@
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <h1>About Our Ministry</h1>
-            <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li><i class="fas fa-chevron-right"></i></li>
-                <li>About Us</li>
-            </ul>
+            <h1>Experience Freedom in Christ</h1>
+            <p>Proclaiming freedom, restoring lives, and sharing God's love through the Gospel of Jesus Christ</p>
+            <div>
+                <a href="donate.html" class="btn">Support Our Mission</a>
+                <a href="contact.html" class="btn btn-outline">Join Us</a>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section>
+    <section id="about">
         <div class="container">
-            <h2 class="section-title">Who We Are</h2>
+            <h2 class="section-title">About Our Ministry</h2>
             <div class="about-content">
                 <div>
-                    <p>Jesus Set Me Free Ministries is a registered non-profit organization (Reg no: 2023/974804/08) dedicated to spreading the Gospel of Jesus Christ and serving communities in need. Founded by Apostle Richard Sekgobela, our ministry is built on the foundation of God's Word and the power of the Holy Spirit.</p>
-                    
-                    <p>We believe in the transformative power of Jesus Christ to set people free from spiritual, emotional, and physical bondage. Our mission is rooted in John 8:36: "So if the Son sets you free, you will be free indeed."</p>
+                    <p>Jesus Set Me Free Ministries is a registered non-profit organization dedicated to spreading the Gospel and serving communities in need. We believe in the transformative power of Jesus Christ to set people free from spiritual, emotional, and physical bondage.</p>
                     
                     <div class="vision-mission">
                         <h3><i class="fas fa-eye"></i> Our Vision</h3>
@@ -463,107 +525,78 @@
                         <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
                         <p>Proclamation of the gospel to those who are lost, calling them to repentance and faith in Christ Jesus.</p>
                     </div>
+                    
+                    <a href="about.html" class="btn" style="margin-top: 1.5rem;">Learn More About Us</a>
                 </div>
                 
                 <div>
                     <img src="images/apostle-richard.jpg" alt="Apostle Richard Sekgobela" class="apostle-image">
                     <div class="apostle-caption">Apostle Richard Sekgobela - Founder & Visionary</div>
+                    <a href="apostle.html" class="btn" style="margin-top: 1.5rem; display: block; text-align: center;">Meet Our Apostle</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Values Section -->
-    <section class="values">
+    <!-- Features Section -->
+    <section class="features">
         <div class="container">
-            <h2 class="section-title">Our Core Values</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">
+            <h2 class="section-title">Our Ministries</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <i class="fas fa-cross"></i>
                     </div>
-                    <h3>Biblical Foundation</h3>
-                    <p>We are committed to the authority of Scripture as the inspired Word of God and the final authority for faith and practice.</p>
+                    <h3>Worship Services</h3>
+                    <p>Join us for powerful worship services where we experience God's presence and hear from His Word.</p>
                 </div>
                 
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-pray"></i>
-                    </div>
-                    <h3>Prayer & Dependence</h3>
-                    <p>We prioritize prayer as essential to everything we do, recognizing our complete dependence on God.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <i class="fas fa-hands-helping"></i>
                     </div>
-                    <h3>Compassionate Service</h3>
-                    <p>We demonstrate God's love through practical acts of service and compassion to those in need.</p>
+                    <h3>Charity Outreach</h3>
+                    <p>We extend God's love through practical assistance to those in need in our communities.</p>
                 </div>
                 
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-people-group"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tv"></i>
                     </div>
-                    <h3>Community</h3>
-                    <p>We foster authentic relationships and spiritual family, supporting one another in our walk with Christ.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-hand-holding-heart"></i>
-                    </div>
-                    <h3>Generosity</h3>
-                    <p>We practice generous giving of our time, resources, and talents to advance God's kingdom.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-dove"></i>
-                    </div>
-                    <h3>Holy Spirit Empowerment</h3>
-                    <p>We rely on the power and guidance of the Holy Spirit in all aspects of ministry and life.</p>
+                    <h3>Heart of the World TV</h3>
+                    <p>Our media ministry spreading the Gospel through television and online platforms.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Statement of Faith -->
-    <section>
+    <!-- Events Section -->
+    <section id="events">
         <div class="container">
-            <h2 class="section-title">Our Statement of Faith</h2>
-            <div class="faith-content">
-                <div class="faith-point">
-                    <h3>We Believe in the Holy Scriptures</h3>
-                    <p>We believe the Bible is the inspired, infallible, and authoritative Word of God, providing instruction for salvation and Christian living.</p>
+            <h2 class="section-title">Upcoming Events</h2>
+            
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="images/revival-2025.jpg" alt="Holy Spirit Encounter Revival">
                 </div>
-                
-                <div class="faith-point">
-                    <h3>We Believe in the Trinity</h3>
-                    <p>We believe in one God, eternally existent in three persons: Father, Son, and Holy Spirit.</p>
-                </div>
-                
-                <div class="faith-point">
-                    <h3>We Believe in Jesus Christ</h3>
-                    <p>We believe in the deity of our Lord Jesus Christ, in His virgin birth, sinless life, miracles, atoning death, bodily resurrection, ascension, and personal return in power and glory.</p>
-                </div>
-                
-                <div class="faith-point">
-                    <h3>We Believe in Salvation</h3>
-                    <p>We believe that for the salvation of lost and sinful people, regeneration by the Holy Spirit is absolutely essential through faith in Jesus Christ.</p>
-                </div>
-                
-                <div class="faith-point">
-                    <h3>We Believe in the Holy Spirit</h3>
-                    <p>We believe in the present ministry of the Holy Spirit by whose indwelling the Christian is enabled to live a godly life and to perform spiritual gifts for the edification of the Church.</p>
-                </div>
-                
-                <div class="faith-point">
-                    <h3>We Believe in the Church</h3>
-                    <p>We believe in the spiritual unity of believers in our Lord Jesus Christ and in the importance of the local church for worship, service, and fellowship.</p>
+                <div class="event-details">
+                    <h3>The Holy Spirit Encounter</h3>
+                    <div class="event-date">August 29-31, 2025</div>
+                    <p>Join us for a powerful 3-day revival in Kroonstad, Free State. Experience the transformative power of the Holy Spirit through worship, prayer, and the preaching of God's Word.</p>
+                    <p><strong>Theme:</strong> The Holy Spirit Encounter</p>
+                    <p><strong>Location:</strong> Kroonstad, Free State, South Africa</p>
+                    <a href="events.html" class="btn" style="margin-top: 1rem; align-self: flex-start;">Learn More</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="section-title">Join Us in Making a Difference</h2>
+            <p>Your support enables us to continue our mission of spreading the Gospel and serving communities in need.</p>
+            <a href="donate.html" class="btn" style="margin-top: 2rem;">Donate Now</a>
         </div>
     </section>
 

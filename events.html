@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jesus Set Me Free Ministries</title>
+    <title>Events - Jesus Set Me Free Ministries</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -109,6 +109,14 @@
             position: relative;
         }
         
+        nav ul li a.active {
+            color: var(--secondary);
+        }
+        
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
         nav ul li a:after {
             content: '';
             position: absolute;
@@ -137,55 +145,40 @@
             cursor: pointer;
         }
         
-        /* Hero Section */
-        .hero {
+        /* Page Header */
+        .page-header {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             color: white;
-            padding: 6rem 0;
+            padding: 5rem 0;
             text-align: center;
         }
         
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+        .page-header h1 {
+            font-size: 3rem;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1rem;
         }
         
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 2.5rem;
-            font-weight: 300;
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 0.5rem;
         }
         
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 1rem 2rem;
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--secondary);
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .btn:hover {
-            background-color: #a87c50;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid white;
-            margin-left: 1rem;
-        }
-        
-        .btn-outline:hover {
-            background: white;
-            color: var(--primary);
+        .breadcrumb i {
+            font-size: 0.8rem;
         }
         
         /* Section Styles */
@@ -209,135 +202,136 @@
             border-radius: 2px;
         }
         
-        /* About Section */
-        .about-content {
+        /* Event Details */
+        .event-detail {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: start;
+            margin-bottom: 4rem;
         }
         
-        .apostle-image {
+        .event-poster {
             width: 100%;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
         }
         
-        .apostle-image:hover {
-            transform: scale(1.02);
-        }
-        
-        .apostle-caption {
-            text-align: center;
-            margin-top: 1rem;
-            font-style: italic;
-            color: var(--primary);
-            font-weight: 500;
-        }
-        
-        .vision-mission {
+        .event-info {
             background: white;
             padding: 2.5rem;
             border-radius: 10px;
-            margin: 1.5rem 0;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--secondary);
         }
         
-        .vision-mission h3 {
+        .event-info h3 {
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .info-item {
+            margin-bottom: 1.2rem;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items: flex-start;
+            gap: 15px;
         }
         
-        .vision-mission h3 i {
+        .info-item i {
             color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 3px;
         }
         
-        /* Features Section */
-        .features {
+        /* Schedule Section */
+        .schedule {
             background-color: var(--light);
         }
         
-        .features-grid {
+        .schedule-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
         
-        .feature-card {
+        .day-card {
             background: white;
             padding: 2rem;
             border-radius: 10px;
-            text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            text-align: center;
         }
         
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
+        .day-title {
+            color: var(--accent);
             margin-bottom: 1.5rem;
+            font-size: 1.3rem;
         }
         
-        /* Events Section */
-        .event-card {
-            background: white;
-            border-radius: 10px;
+        .day-card ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .day-card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .day-card li:before {
+            content: '•';
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Gallery Preview */
+        .gallery-preview {
+            text-align: center;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            display: flex;
+            position: relative;
         }
         
-        .event-img {
-            flex: 1;
-            min-height: 250px;
-            overflow: hidden;
-        }
-        
-        .event-img img {
+        .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.3s ease;
         }
         
-        .event-img:hover img {
+        .gallery-item:hover img {
             transform: scale(1.05);
         }
         
-        .event-details {
-            flex: 1;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .event-date {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 1rem;
             color: white;
-            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
-        .cta .section-title {
-            color: white;
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
         }
         
         /* Footer */
@@ -406,12 +400,8 @@
         
         /* Responsive Styles */
         @media (max-width: 992px) {
-            .about-content {
+            .event-detail {
                 grid-template-columns: 1fr;
-            }
-            
-            .event-card {
-                flex-direction: column;
             }
         }
         
@@ -445,22 +435,8 @@
                 display: flex;
             }
             
-            .hero h1 {
+            .page-header h1 {
                 font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .btn {
-                display: block;
-                margin: 0.5rem auto;
-                width: 80%;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
             }
         }
     </style>
@@ -487,7 +463,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="apostle.html">Our Apostle</a></li>
-                    <li><a href="events.html">Events</a></li>
+                    <li><a href="events.html" class="active">Events</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="donate.html">Donate</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -496,108 +472,144 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Page Header -->
+    <section class="page-header">
         <div class="container">
-            <h1>Experience Freedom in Christ</h1>
-            <p>Proclaiming freedom, restoring lives, and sharing God's love through the Gospel of Jesus Christ</p>
-            <div>
-                <a href="donate.html" class="btn">Support Our Mission</a>
-                <a href="contact.html" class="btn btn-outline">Join Us</a>
-            </div>
+            <h1>Upcoming Events</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><i class="fas fa-chevron-right"></i></li>
+                <li>Events</li>
+            </ul>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
+    <!-- Event Details Section -->
+    <section>
         <div class="container">
-            <h2 class="section-title">About Our Ministry</h2>
-            <div class="about-content">
+            <h2 class="section-title">The Holy Spirit Encounter Revival</h2>
+            <div class="event-detail">
                 <div>
-                    <p>Jesus Set Me Free Ministries is a registered non-profit organization dedicated to spreading the Gospel and serving communities in need. We believe in the transformative power of Jesus Christ to set people free from spiritual, emotional, and physical bondage.</p>
-                    
-                    <div class="vision-mission">
-                        <h3><i class="fas fa-eye"></i> Our Vision</h3>
-                        <p>To restore and share love as God loved the world, proclaiming His favor and setting the captives free.</p>
-                    </div>
-                    
-                    <div class="vision-mission">
-                        <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
-                        <p>Proclamation of the gospel to those who are lost, calling them to repentance and faith in Christ Jesus.</p>
-                    </div>
-                    
-                    <a href="about.html" class="btn" style="margin-top: 1.5rem;">Learn More About Us</a>
+                    <img src="images/revival-pamphlet.jpg" alt="Holy Spirit Encounter Revival" class="event-poster">
                 </div>
                 
-                <div>
-                    <img src="images/apostle-richard.jpg" alt="Apostle Richard Sekgobela" class="apostle-image">
-                    <div class="apostle-caption">Apostle Richard Sekgobela - Founder & Visionary</div>
-                    <a href="apostle.html" class="btn" style="margin-top: 1.5rem; display: block; text-align: center;">Meet Our Apostle</a>
+                <div class="event-info">
+                    <h3>Event Details</h3>
+                    <div class="info-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <strong>Date:</strong> August 29-31, 2025
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Time:</strong> Daily at 6:00 PM
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Location:</strong> Kroonstad, Free State, South Africa
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-pray"></i>
+                        <div>
+                            <strong>Theme:</strong> The Holy Spirit Encounter
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <strong>Host:</strong> Apostle Richard Sekgobela
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Description:</strong> A powerful 3-day revival to experience the transformative power of the Holy Spirit through worship, prayer, and the preaching of God's Word.
+                        </div>
+                    </div>
+                    
+                    <a href="#schedule" class="btn" style="margin-top: 1.5rem; display: inline-block;">View Schedule</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Schedule Section -->
+    <section id="schedule" class="schedule">
         <div class="container">
-            <h2 class="section-title">Our Ministries</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cross"></i>
-                    </div>
-                    <h3>Worship Services</h3>
-                    <p>Join us for powerful worship services where we experience God's presence and hear from His Word.</p>
+            <h2 class="section-title">Event Schedule</h2>
+            <div class="schedule-grid">
+                <div class="day-card">
+                    <h3 class="day-title">Day 1: August 29, 2025</h3>
+                    <ul>
+                        <li><strong>6:00 PM</strong> - Worship & Praise</li>
+                        <li><strong>6:30 PM</strong> - Welcome & Introduction</li>
+                        <li><strong>7:00 PM</strong> - Message: "The Promise of the Father"</li>
+                        <li><strong>8:00 PM</strong> - Altar Call & Prayer Ministry</li>
+                    </ul>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Charity Outreach</h3>
-                    <p>We extend God's love through practical assistance to those in need in our communities.</p>
+                <div class="day-card">
+                    <h3 class="day-title">Day 2: August 30, 2025</h3>
+                    <ul>
+                        <li><strong>6:00 PM</strong> - Worship & Testimonies</li>
+                        <li><strong>6:45 PM</strong> - Message: "Walking in the Spirit"</li>
+                        <li><strong>7:45 PM</strong> - Healing and Deliverance Service</li>
+                        <li><strong>8:30 PM</strong> - Prayer for Empowerment</li>
+                    </ul>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tv"></i>
-                    </div>
-                    <h3>Heart of the World TV</h3>
-                    <p>Our media ministry spreading the Gospel through television and online platforms.</p>
+                <div class="day-card">
+                    <h3 class="day-title">Day 3: August 31, 2025</h3>
+                    <ul>
+                        <li><strong>6:00 PM</strong> - Worship & Thanksgiving</li>
+                        <li><strong>6:30 PM</strong> - Message: "Living a Spirit-Filled Life"</li>
+                        <li><strong>7:30 PM</strong> - Baptism in the Holy Spirit</li>
+                        <li><strong>8:15 PM</strong> - Commissioning & Closing Prayer</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Events Section -->
-    <section id="events">
+    <!-- Gallery Preview Section -->
+    <section class="gallery-preview">
         <div class="container">
-            <h2 class="section-title">Upcoming Events</h2>
+            <h2 class="section-title">Revival Gallery</h2>
+            <p>Photos from our previous revivals and events</p>
             
-            <div class="event-card">
-                <div class="event-img">
-                    <img src="images/revival-pamphlet.jpg" alt="Holy Spirit Encounter Revival Pamphlet">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/revival-1.jpg" alt="Revival Worship">
+                    <div class="gallery-overlay">Worship Service</div>
                 </div>
-                <div class="event-details">
-                    <h3>The Holy Spirit Encounter</h3>
-                    <div class="event-date">August 29-31, 2025</div>
-                    <p>Join us for a powerful 3-day revival in Kroonstad, Free State. Experience the transformative power of the Holy Spirit through worship, prayer, and the preaching of God's Word.</p>
-                    <p><strong>Theme:</strong> The Holy Spirit Encounter</p>
-                    <p><strong>Location:</strong> Kroonstad, Free State, South Africa</p>
-                    <p><strong>Time:</strong> Daily at 6:00 PM</p>
-                    <a href="events.html" class="btn" style="margin-top: 1rem; align-self: flex-start;">Learn More</a>
+                
+                <div class="gallery-item">
+                    <img src="images/revival-2.jpg" alt="Revival Prayer">
+                    <div class="gallery-overlay">Prayer Ministry</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/revival-3.jpg" alt="Revival Crowd">
+                    <div class="gallery-overlay">Congregation</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/revival-4.jpg" alt="Testimonies">
+                    <div class="gallery-overlay">Testimonies</div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2 class="section-title">Join Us in Making a Difference</h2>
-            <p>Your support enables us to continue our mission of spreading the Gospel and serving communities in need.</p>
-            <a href="donate.html" class="btn" style="margin-top: 2rem;">Donate Now</a>
+            
+            <a href="gallery.html" class="btn" style="margin-top: 2rem;">View Full Gallery</a>
         </div>
     </section>
 
