@@ -202,90 +202,112 @@
             border-radius: 2px;
         }
         
-        /* Event Details */
-        .event-detail {
+        /* Event Cards */
+        .events-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-            margin-bottom: 4rem;
-        }
-        
-        .event-poster {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .event-info {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-        }
-        
-        .event-info h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 0.5rem;
-        }
-        
-        .info-item {
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-        
-        .info-item i {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            margin-top: 3px;
-        }
-        
-        /* Schedule Section */
-        .schedule {
-            background-color: var(--light);
-        }
-        
-        .schedule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
         
-        .day-card {
+        .event-card {
             background: white;
-            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
         
-        .day-title {
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .event-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .event-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .event-card:hover .event-img img {
+            transform: scale(1.05);
+        }
+        
+        .event-content {
+            padding: 1.5rem;
+        }
+        
+        .event-date {
             color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .event-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .upcoming-tag {
+            background-color: #e6f7ee;
+            color: #0a9552;
+        }
+        
+        .past-tag {
+            background-color: #f3f4f6;
+            color: #6b7280;
+        }
+        
+        .event-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .event-content p {
             margin-bottom: 1.5rem;
-            font-size: 1.3rem;
+            color: var(--text);
         }
         
-        .day-card ul {
-            list-style: none;
-            text-align: left;
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
         
-        .day-card li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
+        .btn:hover {
+            background-color: #a87c50;
         }
         
-        .day-card li:before {
-            content: '•';
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
             color: var(--secondary);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* Past Events Section */
+        .past-events {
+            background-color: var(--light);
         }
         
         /* Gallery Preview */
@@ -399,12 +421,6 @@
         }
         
         /* Responsive Styles */
-        @media (max-width: 992px) {
-            .event-detail {
-                grid-template-columns: 1fr;
-            }
-        }
-        
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
@@ -437,6 +453,10 @@
             
             .page-header h1 {
                 font-size: 2.5rem;
+            }
+            
+            .events-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -475,7 +495,7 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Upcoming Events</h1>
+            <h1>Ministry Events</h1>
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
                 <li><i class="fas fa-chevron-right"></i></li>
@@ -484,98 +504,113 @@
         </div>
     </section>
 
-    <!-- Event Details Section -->
+    <!-- Upcoming Events Section -->
     <section>
         <div class="container">
-            <h2 class="section-title">The Holy Spirit Encounter Revival</h2>
-            <div class="event-detail">
-                <div>
-                    <img src="images/revival-pamphlet.jpg" alt="Holy Spirit Encounter Revival" class="event-poster">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-container">
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="images/revival-pamphlet.jpg" alt="Holy Spirit Encounter Revival">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            August 29-31, 2025
+                        </div>
+                        <span class="event-tag upcoming-tag">Upcoming</span>
+                        <h3>The Holy Spirit Encounter Revival</h3>
+                        <p>Join us for a powerful 3-day revival in Kroonstad, Free State. Experience the transformative power of the Holy Spirit through worship, prayer, and the preaching of God's Word.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
                 </div>
                 
-                <div class="event-info">
-                    <h3>Event Details</h3>
-                    <div class="info-item">
-                        <i class="fas fa-calendar-alt"></i>
-                        <div>
-                            <strong>Date:</strong> August 29-31, 2025
-                        </div>
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="images/charity-event.jpg" alt="Community Outreach Program">
                     </div>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <strong>Time:</strong> Daily at 6:00 PM
+                    <div class="event-content">
+                        <div class="event-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            September 15, 2025
                         </div>
+                        <span class="event-tag upcoming-tag">Upcoming</span>
+                        <h3>Community Outreach Program</h3>
+                        <p>We'll be distributing food parcels, clothing, and offering prayer support to families in need in the Thembisa community.</p>
+                        <a href="#" class="btn">Learn More</a>
                     </div>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Location:</strong> Kroonstad, Free State, South Africa
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="images/youth-event.jpg" alt="Youth Empowerment Conference">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            October 5-6, 2025
                         </div>
+                        <span class="event-tag upcoming-tag">Upcoming</span>
+                        <h3>Youth Empowerment Conference</h3>
+                        <p>A special conference for young people focusing on spiritual growth, purpose discovery, and leadership development.</p>
+                        <a href="#" class="btn">Learn More</a>
                     </div>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-pray"></i>
-                        <div>
-                            <strong>Theme:</strong> The Holy Spirit Encounter
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-user"></i>
-                        <div>
-                            <strong>Host:</strong> Apostle Richard Sekgobela
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-info-circle"></i>
-                        <div>
-                            <strong>Description:</strong> A powerful 3-day revival to experience the transformative power of the Holy Spirit through worship, prayer, and the preaching of God's Word.
-                        </div>
-                    </div>
-                    
-                    <a href="#schedule" class="btn" style="margin-top: 1.5rem; display: inline-block;">View Schedule</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Schedule Section -->
-    <section id="schedule" class="schedule">
+    <!-- Past Events Section -->
+    <section class="past-events">
         <div class="container">
-            <h2 class="section-title">Event Schedule</h2>
-            <div class="schedule-grid">
-                <div class="day-card">
-                    <h3 class="day-title">Day 1: August 29, 2025</h3>
-                    <ul>
-                        <li><strong>6:00 PM</strong> - Worship & Praise</li>
-                        <li><strong>6:30 PM</strong> - Welcome & Introduction</li>
-                        <li><strong>7:00 PM</strong> - Message: "The Promise of the Father"</li>
-                        <li><strong>8:00 PM</strong> - Altar Call & Prayer Ministry</li>
-                    </ul>
+            <h2 class="section-title">Past Events</h2>
+            <div class="events-container">
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="images/past-revival-1.jpg" alt="Easter Revival 2024">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            April 10-12, 2024
+                        </div>
+                        <span class="event-tag past-tag">Past Event</span>
+                        <h3>Easter Revival 2024</h3>
+                        <p>A powerful resurrection celebration with guest speakers and special musical performances. Many lives were transformed during this event.</p>
+                        <a href="gallery.html" class="btn btn-outline">View Photos</a>
+                    </div>
                 </div>
                 
-                <div class="day-card">
-                    <h3 class="day-title">Day 2: August 30, 2025</h3>
-                    <ul>
-                        <li><strong>6:00 PM</strong> - Worship & Testimonies</li>
-                        <li><strong>6:45 PM</strong> - Message: "Walking in the Spirit"</li>
-                        <li><strong>7:45 PM</strong> - Healing and Deliverance Service</li>
-                        <li><strong>8:30 PM</strong> - Prayer for Empowerment</li>
-                    </ul>
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="images/past-charity-1.jpg" alt="Christmas Charity Drive 2023">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            December 15, 2023
+                        </div>
+                        <span class="event-tag past-tag">Past Event</span>
+                        <h3>Christmas Charity Drive 2023</h3>
+                        <p>We blessed over 200 families with Christmas meals, gifts for children, and essential supplies. A true celebration of Christ's love.</p>
+                        <a href="gallery.html" class="btn btn-outline">View Photos</a>
+                    </div>
                 </div>
                 
-                <div class="day-card">
-                    <h3 class="day-title">Day 3: August 31, 2025</h3>
-                    <ul>
-                        <li><strong>6:00 PM</strong> - Worship & Thanksgiving</li>
-                        <li><strong>6:30 PM</strong> - Message: "Living a Spirit-Filled Life"</li>
-                        <li><strong>7:30 PM</strong> - Baptism in the Holy Spirit</li>
-                        <li><strong>8:15 PM</strong> - Commissioning & Closing Prayer</li>
-                    </ul>
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="images/past-conference-1.jpg" alt="Kingdom Business Conference">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            August 20, 2023
+                        </div>
+                        <span class="event-tag past-tag">Past Event</span>
+                        <h3>Kingdom Business Conference</h3>
+                        <p>Equipping entrepreneurs and business people to operate their businesses according to biblical principles and ethics.</p>
+                        <a href="gallery.html" class="btn btn-outline">View Photos</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -584,8 +619,8 @@
     <!-- Gallery Preview Section -->
     <section class="gallery-preview">
         <div class="container">
-            <h2 class="section-title">Revival Gallery</h2>
-            <p>Photos from our previous revivals and events</p>
+            <h2 class="section-title">Event Gallery</h2>
+            <p>Photos from our previous events and ministries</p>
             
             <div class="gallery-grid">
                 <div class="gallery-item">
