@@ -137,42 +137,6 @@
             cursor: pointer;
         }
         
-        /* Announcement Bar */
-        .announcement-bar {
-            background-color: var(--accent);
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-            position: relative;
-        }
-        
-        .announcement-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .announcement-icon {
-            font-size: 1.2rem;
-        }
-        
-        .announcement-text {
-            font-weight: 500;
-        }
-        
-        .announcement-close {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-        
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-background.jpg') no-repeat center center/cover;
@@ -355,46 +319,26 @@
             margin-bottom: 1.5rem;
         }
         
-        /* Events Section */
-        .event-card {
+        /* Events Section - UPDATED */
+        .events-placeholder {
             background: white;
+            padding: 4rem 2rem;
             border-radius: 10px;
-            overflow: hidden;
+            text-align: center;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            display: flex;
         }
         
-        .event-img {
-            flex: 1;
-            min-height: 250px;
-            overflow: hidden;
+        .events-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
         }
         
-        .event-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .event-img:hover img {
-            transform: scale(1.05);
-        }
-        
-        .event-details {
-            flex: 1;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .event-date {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+        .events-placeholder p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text);
         }
         
         /* CTA Section */
@@ -477,10 +421,6 @@
             .about-content {
                 grid-template-columns: 1fr;
             }
-            
-            .event-card {
-                flex-direction: column;
-            }
         }
         
         @media (max-width: 768px) {
@@ -530,19 +470,6 @@
             .btn-outline {
                 margin-left: 0;
             }
-            
-            .announcement-content {
-                flex-direction: column;
-                gap: 5px;
-            }
-            
-            .announcement-close {
-                position: relative;
-                right: 0;
-                top: 0;
-                transform: none;
-                margin-top: 5px;
-            }
         }
     </style>
 </head>
@@ -577,7 +504,6 @@
             </nav>
         </div>
     </header>
-
 
     <!-- Hero Section -->
     <section class="hero">
@@ -688,26 +614,18 @@
         </div>
     </section>
 
-    <!-- Events Section -->
+    <!-- Events Section - UPDATED -->
     <section id="events">
         <div class="container">
             <h2 class="section-title">Upcoming Events</h2>
             
-            <div class="event-card">
-                <div class="event-img">
-                    <img src="images/revival-pamphlet.jpg" alt="Holy Spirit Encounter Revival Pamphlet">
+            <div class="events-placeholder">
+                <div class="events-icon">
+                    <i class="fas fa-calendar-alt"></i>
                 </div>
-                <div class="event-details">
-                    <h3>The Holy Spirit Encounter</h3>
-                    <div class="event-date">August 29-31, 2025</div>
-                    <p>The Lord Jesus Christ has heard the cry of Free State Kroonstad, invite your family in this exciting Holy Spirit encounter 3 days revival with Apostle Richard Sekgobela of Jesus set me free ministries we will be having charity work service giving to the needy by the grace of God come and experience the encounter of the Holy Spirit.
-See you there!
-</p>
-                    <p><strong>Theme:</strong> The Holy Spirit Encounter</p>
-                    <p><strong>Location:</strong> Kroonstad, Free State, South Africa</p>
-                    <p><strong>Time:</strong> Daily at 17:30 PM And Sunday 9:30 AM</p>
-                    <a href="events.html" class="btn" style="margin-top: 1rem; align-self: flex-start;">Learn More</a>
-                </div>
+                <h3>Upcoming Events Will Be Posted Here</h3>
+                <p>Check back regularly for information about our upcoming services, revivals, and special events.</p>
+                <p>For the latest updates, follow us on our social media channels or contact us directly.</p>
             </div>
         </div>
     </section>
@@ -775,37 +693,6 @@ See you there!
         // Mobile menu toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             document.getElementById('menu').classList.toggle('show');
-        });
-        
-        // Announcement bar close functionality
-        document.getElementById('closeAnnouncement').addEventListener('click', function() {
-            document.getElementById('announcementBar').style.display = 'none';
-            
-            // Store dismissal in localStorage for 7 days
-            const now = new Date();
-            const item = {
-                value: 'dismissed',
-                expiry: now.getTime() + (7 * 24 * 60 * 60 * 1000), // 7 days
-            }
-            localStorage.setItem('announcementDismissed', JSON.stringify(item));
-        });
-        
-        // Check if announcement was previously dismissed
-        document.addEventListener('DOMContentLoaded', function() {
-            const announcement = localStorage.getItem('announcementDismissed');
-            if (announcement) {
-                const item = JSON.parse(announcement);
-                const now = new Date();
-                
-                // Check if the dismissal is still valid (less than 7 days old)
-                if (now.getTime() > item.expiry) {
-                    // Expired - remove from storage and show announcement
-                    localStorage.removeItem('announcementDismissed');
-                } else {
-                    // Still valid - hide announcement
-                    document.getElementById('announcementBar').style.display = 'none';
-                }
-            }
         });
     </script>
 </body>
