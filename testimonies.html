@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events - Jesus Set Me Free Ministries</title>
+    <title>Testimonies - Jesus Set Me Free Ministries</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -148,7 +148,7 @@
         /* Page Header */
         .page-header {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                url('images/hero-background.jpg') 
+                url('https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') 
                 no-repeat center center/cover;
             color: white;
             padding: 5rem 0;
@@ -204,81 +204,59 @@
             border-radius: 2px;
         }
         
-        /* Event Cards */
-        .events-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .event-card {
+        /* Form Styles */
+        .testimony-form {
             background: white;
+            padding: 3rem;
             border-radius: 10px;
-            overflow: hidden;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            margin-bottom: 3rem;
         }
         
-        .event-card:hover {
-            transform: translateY(-5px);
+        .form-group {
+            margin-bottom: 1.5rem;
         }
         
-        .event-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .event-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .event-card:hover .event-img img {
-            transform: scale(1.05);
-        }
-        
-        .event-content {
-            padding: 1.5rem;
-        }
-        
-        .event-date {
-            color: var(--accent);
-            font-weight: 600;
+        .form-group label {
+            display: block;
             margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(26, 75, 140, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-check {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
         }
         
-        .event-tag {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .form-check-input {
+            width: 18px;
+            height: 18px;
         }
         
-        .upcoming-tag {
-            background-color: #e6f7ee;
-            color: #0a9552;
-        }
-        
-        .past-tag {
-            background-color: #f3f4f6;
-            color: #6b7280;
-        }
-        
-        .event-content h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        
-        .event-content p {
-            margin-bottom: 1.5rem;
-            color: var(--text);
+        .form-check-label {
+            margin-bottom: 0;
         }
         
         .btn {
@@ -290,6 +268,8 @@
             border-radius: 5px;
             font-weight: 600;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
         
         .btn:hover {
@@ -307,62 +287,91 @@
             color: white;
         }
         
-        /* Past Events Section */
-        .past-events {
+        /* Video Testimonies Section */
+        .video-testimonies {
             background-color: var(--light);
         }
         
-        .empty-events {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text);
-            font-style: italic;
-        }
-        
-        /* Gallery Preview */
-        .gallery-preview {
-            text-align: center;
-        }
-        
-        .gallery-grid {
+        .videos-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
         
-        .gallery-item {
-            height: 200px;
-            border-radius: 8px;
-            overflow: hidden;
+        .video-wrapper {
             position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .gallery-item img {
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            border: none;
+        }
+        
+        /* Testimony Cards */
+        .testimonies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimony-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
         
-        .gallery-item:hover img {
+        .testimony-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .testimony-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .testimony-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .testimony-card:hover .testimony-img img {
             transform: scale(1.05);
         }
         
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            padding: 1rem;
-            color: white;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .testimony-content {
+            padding: 1.5rem;
         }
         
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
+        .testimony-meta {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .testimony-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .testimony-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text);
         }
         
         /* Footer */
@@ -464,8 +473,13 @@
                 font-size: 2.5rem;
             }
             
-            .events-container {
+            .testimonies-container,
+            .videos-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .testimony-form {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -493,7 +507,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="apostle.html">Our Apostle</a></li>
-                    <li><a href="events.html" class="active">Events</a></li>
+                    <li><a href="testimonies.html" class="active">Testimonies</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="donate.html">Donate</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -505,82 +519,122 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Ministry Events</h1>
+            <h1>Share Your Testimony</h1>
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
                 <li><i class="fas fa-chevron-right"></i></li>
-                <li>Events</li>
+                <li>Testimonies</li>
             </ul>
         </div>
     </section>
 
-    <!-- Upcoming Events Section -->
+    <!-- Testimony Form Section -->
     <section>
         <div class="container">
-            <h2 class="section-title">Upcoming Events</h2>
-            <div class="events-container">
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="images/revival-pamphlet.jpg" alt="Holy Spirit Encounter Revival">
+            <h2 class="section-title">Share Your Testimony</h2>
+            <div class="testimony-form">
+                <form action="https://formsubmit.co/jesussetm@gmail.com" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_subject" value="New Testimony Submission">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
                     </div>
-                    <div class="event-content">
-                        <div class="event-date">
-                            <i class="fas fa-calendar-alt"></i>
-                            August 29-31, 2025
+                    
+                    <div class="form-group">
+                        <label for="surname">Surname *</label>
+                        <input type="text" id="surname" name="surname" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <input type="text" id="location" name="location" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact">Contact Details (Phone/Email) *</label>
+                        <input type="text" id="contact" name="contact" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Did Apostle Richard Sekgobela pray for you, prophesy or speak a word over your life?</label>
+                        <div class="form-check">
+                            <input type="radio" id="prayer-yes" name="prayer_received" value="Yes" class="form-check-input">
+                            <label for="prayer-yes" class="form-check-label">Yes</label>
                         </div>
-                        <span class="event-tag upcoming-tag">Upcoming</span>
-                        <h3>The Holy Spirit Encounter Revival</h3>
-                        <p>𝑻𝒉𝒆 𝑳𝒐𝒓𝒅 𝑱𝒆𝒔𝒖𝒔 𝑪𝒉𝒓𝒊𝒔𝒕 𝒉𝒂𝒔 𝒉𝒆𝒂𝒓𝒅 𝒕𝒉𝒆 𝒄𝒓𝒚 𝒐𝒇 𝑭𝒓𝒆𝒆 𝑺𝒕𝒂𝒕𝒆 𝑲𝒓𝒐𝒐𝒏𝒔𝒕𝒂𝒅, 𝒊𝒏𝒗𝒊𝒕𝒆 𝒚𝒐𝒖𝒓 𝒇𝒂𝒎𝒊𝒍𝒚 𝒊𝒏 𝒕𝒉𝒊𝒔 𝒆𝒙𝒄𝒊𝒕𝒊𝒏𝒈 𝑯𝒐𝒍𝒚 𝑺𝒑𝒊𝒓𝒊𝒕 𝑬𝒏𝒄𝒐𝒖𝒏𝒕𝒆𝒓 3 𝒅𝒂𝒚𝒔 𝑹𝒆𝒗𝒊𝒗𝒂𝒍 𝑾𝒊𝒕𝒉 𝑨𝒑𝒐𝒔𝒕𝒍𝒆 𝑹𝒊𝒄𝒉𝒂𝒓𝒅 𝑺𝒆𝒌𝒈𝒐𝒃𝒆𝒍𝒂 Jesus Set Me Free Ministries.</p>
-                        
-                        <p>𝑾𝒆 𝒘𝒊𝒍𝒍 𝒉𝒂𝒗𝒊𝒏𝒈 𝒄𝒉𝒂𝒓𝒊𝒕𝒚 𝒘𝒐𝒓𝒌 𝒔𝒆𝒓𝒗𝒊𝒄𝒆,𝒈𝒊𝒗𝒊𝒏𝒈 𝒕𝒐 𝒕𝒉𝒆 𝒏𝒆𝒆𝒅𝒚 𝒃𝒚 𝒕𝒉𝒆 𝒈𝒓𝒂𝒄𝒆 𝒐𝒇 𝑮𝒐𝒅.</p>
-                        
-                        <p>𝑪𝒐𝒎𝒆 𝒂𝒏𝒅 𝒆𝒙𝒑𝒆𝒓𝒊𝒆𝒏𝒄𝒆 𝒕𝒉𝒆 𝑬𝒏𝒄𝒐𝒖𝒏𝒕𝒆𝒓 𝒐𝒇 𝒕𝒉𝒆 𝑯𝒐𝒍𝒚 𝑺𝒑𝒊𝒓𝒊𝒕, 𝒔𝒆𝒆 𝒚𝒐𝒖 𝒕𝒉𝒆𝒓𝒆.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <div class="form-check">
+                            <input type="radio" id="prayer-no" name="prayer_received" value="No" class="form-check-input">
+                            <label for="prayer-no" class="form-check-label">No</label>
+                        </div>
                     </div>
+                    
+                    <div class="form-group" id="prayer-details-group" style="display: none;">
+                        <label for="prayer_details">What did he say or what was the prayer?</label>
+                        <textarea id="prayer_details" name="prayer_details" class="form-control"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="platform">Which platform was this on?</label>
+                        <select id="platform" name="platform" class="form-control">
+                            <option value="">Select platform</option>
+                            <option value="Church Service">Church Service</option>
+                            <option value="TikTok Live">TikTok Live</option>
+                            <option value="YouTube Live">YouTube Live</option>
+                            <option value="Facebook Live">Facebook Live</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimony">Your Testimony *</label>
+                        <textarea id="testimony" name="testimony" class="form-control" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="media">Upload Photo/Video/Document (Optional)</label>
+                        <input type="file" id="media" name="media" class="form-control">
+                    </div>
+                    
+                    <button type="submit" class="btn">Submit Testimony</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonies Section -->
+    <section class="video-testimonies">
+        <div class="container">
+            <h2 class="section-title">Video Testimonies</h2>
+            <div class="videos-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/xi0XXHFg-Jc" title="Testimony Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/0qdCN2N0n_s" title="Testimony Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/P7-B12JYSSY" title="Testimony Video 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/0oMu596EQeY" title="Testimony Video 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dXWYvc-Kk3A" title="Testimony Video 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Past Events Section -->
-    <section class="past-events">
+    <!-- Written Testimonies Section -->
+    <section>
         <div class="container">
-            <h2 class="section-title">Past Events</h2>
-            <div class="empty-events">
-                <p>Past events will be displayed here as they become available.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Preview Section -->
-    <section class="gallery-preview">
-        <div class="container">
-            <h2 class="section-title">Event Gallery</h2>
-            <p>Photos from our previous events and ministries</p>
+            <h2 class="section-title">Shared Testimonies</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Testimonies shared by believers will appear here after review</p>
             
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/revival-1.jpg" alt="Revival Worship">
-                    <div class="gallery-overlay">Worship Service</div>
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="images/revival-2.jpg" alt="Revival Prayer">
-                    <div class="gallery-overlay">Prayer Ministry</div>
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="images/revival-3.jpg" alt="Revival Crowd">
-                    <div class="gallery-overlay">Congregation</div>
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="images/revival-4.jpg" alt="Testimonies">
-                    <div class="gallery-overlay">Testimonies</div>
+            
                 </div>
             </div>
-            
-            <a href="gallery.html" class="btn" style="margin-top: 2rem;">View Full Gallery</a>
         </div>
     </section>
 
@@ -604,7 +658,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="apostle.html">Our Apostle</a></li>
-                        <li><a href="events.html">Events</a></li>
+                        <li><a href="testimonies.html">Testimonies</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="donate.html">Donate</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -629,7 +683,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>This website was coded by Jesus Set Me Free Ministries &copy; 2025S</p>
+                <p>This website was coded by Jesus Set Me Free Ministries &copy; 2025</p>
             </div>
         </div>
     </footer>
@@ -639,6 +693,28 @@
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             document.getElementById('menu').classList.toggle('show');
         });
+        
+        // Show/hide prayer details based on selection
+        const prayerYes = document.getElementById('prayer-yes');
+        const prayerNo = document.getElementById('prayer-no');
+        const prayerDetailsGroup = document.getElementById('prayer-details-group');
+        
+        prayerYes.addEventListener('change', function() {
+            if (this.checked) {
+                prayerDetailsGroup.style.display = 'block';
+            }
+        });
+        
+        prayerNo.addEventListener('change', function() {
+            if (this.checked) {
+                prayerDetailsGroup.style.display = 'none';
+            }
+        });
+        
+        // Check if either radio is already checked on page load
+        if (prayerYes.checked) {
+            prayerDetailsGroup.style.display = 'block';
+        }
     </script>
 </body>
 </html>
