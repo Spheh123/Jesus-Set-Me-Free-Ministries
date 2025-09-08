@@ -66,6 +66,7 @@
         
         .logo-main {
             height: 70px;
+            width: auto;
         }
         
         .logo-text {
@@ -91,6 +92,7 @@
         
         .logo-tv {
             height: 50px;
+            width: auto;
             margin-left: 20px;
         }
         
@@ -438,6 +440,27 @@
             opacity: 0.8;
         }
         
+        /* Form Submission Message */
+        .form-message {
+            display: none;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
         /* Responsive Styles */
         @media (max-width: 768px) {
             .header-container {
@@ -490,12 +513,13 @@
     <header>
         <div class="container header-container">
             <div class="logo-container">
-                <img src="images/logo-main.png" alt="Jesus Set Me Free Ministries Logo" class="logo-main">
+                <!-- Using placeholder images that will work without your actual images folder -->
+                <div class="logo-main" style="background-color: #c19a6b; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">JSMF</div>
                 <div class="logo-text">
                     <div class="church-name">JESUS <span>SET ME FREE</span> MINISTRIES</div>
                     <div class="church-reg">Reg no: 2023/974804/08</div>
                 </div>
-                <img src="images/logo-heart-tv.png" alt="Heart of the World TV Logo" class="logo-tv">
+                <div class="logo-tv" style="background-color: #8e1c1c; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">HOTW TV</div>
             </div>
             
             <button class="mobile-menu-btn">
@@ -532,10 +556,14 @@
     <section>
         <div class="container">
             <h2 class="section-title">Share Your Testimony</h2>
+            
+            <div id="form-message" class="form-message"></div>
+            
             <div class="testimony-form">
-                <form action="https://formsubmit.co/jesussetm@gmail.com" method="POST" enctype="multipart/form-data">
+                <form id="testimony-form" action="https://formsubmit.co/jesussetm@gmail.com" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_subject" value="New Testimony Submission">
                     <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
                     
                     <div class="form-group">
                         <label for="name">Name *</label>
@@ -558,25 +586,25 @@
                     </div>
                     
                     <div class="form-group">
-                        <label>Did Apostle Richard Sekgobela pray for you, prophesy or speak a word over your life?</label>
+                        <label>Did Apostle Richard Sekgobela pray for you, prophesy or speak a word over your life? *</label>
                         <div class="form-check">
-                            <input type="radio" id="prayer-yes" name="prayer_received" value="Yes" class="form-check-input">
+                            <input type="radio" id="prayer-yes" name="prayer_received" value="Yes" class="form-check-input" required>
                             <label for="prayer-yes" class="form-check-label">Yes</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" id="prayer-no" name="prayer_received" value="No" class="form-check-input">
+                            <input type="radio" id="prayer-no" name="prayer_received" value="No" class="form-check-input" required>
                             <label for="prayer-no" class="form-check-label">No</label>
                         </div>
                     </div>
                     
                     <div class="form-group" id="prayer-details-group" style="display: none;">
-                        <label for="prayer_details">What did he say or what was the prayer?</label>
+                        <label for="prayer_details">What did he say or what was the prayer? *</label>
                         <textarea id="prayer_details" name="prayer_details" class="form-control"></textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label for="platform">Which platform was this on?</label>
-                        <select id="platform" name="platform" class="form-control">
+                        <label for="platform">Which platform was this on? *</label>
+                        <select id="platform" name="platform" class="form-control" required>
                             <option value="">Select platform</option>
                             <option value="Church Service">Church Service</option>
                             <option value="TikTok Live">TikTok Live</option>
@@ -594,6 +622,7 @@
                     <div class="form-group">
                         <label for="media">Upload Photo/Video/Document (Optional)</label>
                         <input type="file" id="media" name="media" class="form-control">
+                        <small>Max file size: 10MB</small>
                     </div>
                     
                     <button type="submit" class="btn">Submit Testimony</button>
@@ -632,7 +661,50 @@
             <h2 class="section-title">Shared Testimonies</h2>
             <p style="text-align: center; margin-bottom: 2rem;">Testimonies shared by believers will appear here after review</p>
             
-           
+            <div class="testimonies-container">
+                <div class="testimony-card">
+                    <div class="testimony-img">
+                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Testimony Image">
+                    </div>
+                    <div class="testimony-content">
+                        <div class="testimony-meta">
+                            <i class="fas fa-user"></i>
+                            Submitted by: Faithful Believer
+                        </div>
+                        <h3>Share Your Testimony</h3>
+                        <p>Your testimony could appear here to inspire others. Use the form above to share how God has worked in your life through Apostle Richard's ministry.</p>
+                        <a href="#testimony-form" class="btn btn-outline">Share Your Story</a>
+                    </div>
+                </div>
+                
+                <div class="testimony-card">
+                    <div class="testimony-img">
+                        <img src="https://images.unsplash.com/photo-1535982337059-51a5b2d3c079?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Testimony Image">
+                    </div>
+                    <div class="testimony-content">
+                        <div class="testimony-meta">
+                            <i class="fas fa-user"></i>
+                            Submitted by: Child of God
+                        </div>
+                        <h3>Your Experience Matters</h3>
+                        <p>Your personal experience with God's power can encourage others facing similar challenges. Share what God has done for you.</p>
+                        <a href="#testimony-form" class="btn btn-outline">Share Your Experience</a>
+                    </div>
+                </div>
+                
+                <div class="testimony-card">
+                    <div class="testimony-img">
+                        <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Testimony Image">
+                    </div>
+                    <div class="testimony-content">
+                        <div class="testimony-meta">
+                            <i class="fas fa-user"></i>
+                            Submitted by: Kingdom Witness
+                        </div>
+                        <h3>Power of Testimony</h3>
+                        <p>"They overcame him by the blood of the Lamb and by the word of their testimony" (Revelation 12:11). Your story has power to change lives.</p>
+                        <a href="#testimony-form" class="btn btn-outline">Share Your Victory</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -698,22 +770,46 @@
         const prayerYes = document.getElementById('prayer-yes');
         const prayerNo = document.getElementById('prayer-no');
         const prayerDetailsGroup = document.getElementById('prayer-details-group');
+        const prayerDetails = document.getElementById('prayer_details');
         
         prayerYes.addEventListener('change', function() {
             if (this.checked) {
                 prayerDetailsGroup.style.display = 'block';
+                prayerDetails.setAttribute('required', 'required');
             }
         });
         
         prayerNo.addEventListener('change', function() {
             if (this.checked) {
                 prayerDetailsGroup.style.display = 'none';
+                prayerDetails.removeAttribute('required');
             }
         });
         
-        // Check if either radio is already checked on page load
-        if (prayerYes.checked) {
-            prayerDetailsGroup.style.display = 'block';
+        // Form submission handling
+        const form = document.getElementById('testimony-form');
+        const formMessage = document.getElementById('form-message');
+        
+        form.addEventListener('submit', function(e) {
+            // Basic validation
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                formMessage.textContent = 'Please fill in all required fields correctly.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+            } else {
+                formMessage.textContent = 'Submitting your testimony...';
+                formMessage.className = 'form-message';
+                formMessage.style.display = 'block';
+            }
+        });
+        
+        // Check if the page was redirected from a form submission
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('submitted') === 'true') {
+            formMessage.textContent = 'Thank you for sharing your testimony! It has been submitted for review.';
+            formMessage.className = 'form-message success';
+            formMessage.style.display = 'block';
         }
     </script>
 </body>
