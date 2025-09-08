@@ -67,6 +67,14 @@
         .logo-main {
             height: 70px;
             width: auto;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            padding: 0 10px;
+            border-radius: 5px;
         }
         
         .logo-text {
@@ -94,6 +102,14 @@
             height: 50px;
             width: auto;
             margin-left: 20px;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            padding: 0 10px;
+            border-radius: 5px;
         }
         
         nav ul {
@@ -513,13 +529,12 @@
     <header>
         <div class="container header-container">
             <div class="logo-container">
-                <!-- Using placeholder images that will work without your actual images folder -->
-                <div class="logo-main" style="background-color: #c19a6b; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">JSMF</div>
+                <div class="logo-main">JSMF</div>
                 <div class="logo-text">
                     <div class="church-name">JESUS <span>SET ME FREE</span> MINISTRIES</div>
                     <div class="church-reg">Reg no: 2023/974804/08</div>
                 </div>
-                <div class="logo-tv" style="background-color: #8e1c1c; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">HOTW TV</div>
+                <div class="logo-tv">HOTW TV</div>
             </div>
             
             <button class="mobile-menu-btn">
@@ -563,7 +578,7 @@
                 <form id="testimony-form" action="https://formsubmit.co/jesussetm@gmail.com" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_subject" value="New Testimony Submission">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                    <input type="hidden" name="_captcha" value="false">
                     
                     <div class="form-group">
                         <label for="name">Name *</label>
@@ -797,10 +812,16 @@
                 formMessage.textContent = 'Please fill in all required fields correctly.';
                 formMessage.className = 'form-message error';
                 formMessage.style.display = 'block';
+                
+                // Scroll to message
+                formMessage.scrollIntoView({ behavior: 'smooth' });
             } else {
                 formMessage.textContent = 'Submitting your testimony...';
                 formMessage.className = 'form-message';
                 formMessage.style.display = 'block';
+                
+                // Scroll to message
+                formMessage.scrollIntoView({ behavior: 'smooth' });
             }
         });
         
@@ -810,6 +831,9 @@
             formMessage.textContent = 'Thank you for sharing your testimony! It has been submitted for review.';
             formMessage.className = 'form-message success';
             formMessage.style.display = 'block';
+            
+            // Scroll to message
+            formMessage.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
