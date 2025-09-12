@@ -601,20 +601,20 @@
                     </div>
                     
                     <div class="form-group">
-                        <label>Did Apostle Richard Sekgobela pray for you, prophesy or speak a word over your life? *</label>
-                        <div class="form-check">
-                            <input type="radio" id="prayer-yes" name="prayer_received" value="Yes" class="form-check-input" required>
-                            <label for="prayer-yes" class="form-check-label">Yes</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" id="prayer-no" name="prayer_received" value="No" class="form-check-input" required>
-                            <label for="prayer-no" class="form-check-label">No</label>
-                        </div>
+                        <label for="encounter-type">How did Apostle Richard Sekgobela minister to you? *</label>
+                        <select id="encounter-type" name="encounter_type" class="form-control" required>
+                            <option value="">Please select an option</option>
+                            <option value="Prayed for me">Prayed for me</option>
+                            <option value="Spoke a word over my life">Spoke a word over my life</option>
+                            <option value="Prophesied">Prophesied</option>
+                            <option value="Multiple of the above">Multiple of the above</option>
+                            <option value="None">None of the above</option>
+                        </select>
                     </div>
                     
-                    <div class="form-group" id="prayer-details-group" style="display: none;">
-                        <label for="prayer_details">What did he say or what was the prayer? *</label>
-                        <textarea id="prayer_details" name="prayer_details" class="form-control"></textarea>
+                    <div class="form-group" id="encounter-details-group">
+                        <label for="encounter_details">Please describe what happened during this encounter *</label>
+                        <textarea id="encounter_details" name="encounter_details" class="form-control" required></textarea>
                     </div>
                     
                     <div class="form-group">
@@ -782,22 +782,17 @@
         });
         
         // Show/hide prayer details based on selection
-        const prayerYes = document.getElementById('prayer-yes');
-        const prayerNo = document.getElementById('prayer-no');
-        const prayerDetailsGroup = document.getElementById('prayer-details-group');
-        const prayerDetails = document.getElementById('prayer_details');
+        const encounterType = document.getElementById('encounter-type');
+        const encounterDetailsGroup = document.getElementById('encounter-details-group');
+        const encounterDetails = document.getElementById('encounter_details');
         
-        prayerYes.addEventListener('change', function() {
-            if (this.checked) {
-                prayerDetailsGroup.style.display = 'block';
-                prayerDetails.setAttribute('required', 'required');
-            }
-        });
-        
-        prayerNo.addEventListener('change', function() {
-            if (this.checked) {
-                prayerDetailsGroup.style.display = 'none';
-                prayerDetails.removeAttribute('required');
+        encounterType.addEventListener('change', function() {
+            if (this.value === 'None' || this.value === '') {
+                encounterDetailsGroup.style.display = 'none';
+                encounterDetails.removeAttribute('required');
+            } else {
+                encounterDetailsGroup.style.display = 'block';
+                encounterDetails.setAttribute('required', 'required');
             }
         });
         
