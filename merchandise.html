@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jesus Set Me Free Ministries</title>
+    <title>Ministry Merchandise - Jesus Set Me Free Ministries</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -109,6 +109,14 @@
             position: relative;
         }
         
+        nav ul li a.active {
+            color: var(--secondary);
+        }
+        
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
         nav ul li a:after {
             content: '';
             position: absolute;
@@ -137,87 +145,43 @@
             cursor: pointer;
         }
         
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-background.jpg') no-repeat center center/cover;
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('images/hero-background.jpg') 
+                no-repeat center center/cover;
             color: white;
-            padding: 6rem 0;
+            padding: 5rem 0;
             text-align: center;
+            background-position: center 30%;
         }
         
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+        .page-header h1 {
+            font-size: 3rem;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 2.5rem;
-            font-weight: 300;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn:hover {
-            background-color: #a87c50;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid white;
-            margin-left: 1rem;
-        }
-        
-        .btn-outline:hover {
-            background: white;
-            color: var(--primary);
-        }
-        
-        /* Quick Links Section */
-        .quick-links {
-            background-color: var(--light);
-            padding: 3rem 0;
-        }
-        
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .link-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .link-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .link-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
             margin-bottom: 1rem;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 0.5rem;
+        }
+        
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .breadcrumb i {
+            font-size: 0.8rem;
         }
         
         /* Section Styles */
@@ -239,84 +203,6 @@
             background: linear-gradient(to right, var(--primary), var(--secondary));
             margin: 0.8rem auto;
             border-radius: 2px;
-        }
-        
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        
-        .apostle-image {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .apostle-image:hover {
-            transform: scale(1.02);
-        }
-        
-        .apostle-caption {
-            text-align: center;
-            margin-top: 1rem;
-            font-style: italic;
-            color: var(--primary);
-            font-weight: 500;
-        }
-        
-        .vision-mission {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--secondary);
-        }
-        
-        .vision-mission h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .vision-mission h3 i {
-            color: var(--secondary);
-        }
-        
-        /* Features Section */
-        .features {
-            background-color: var(--light);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
         }
         
         /* Merchandise Section */
@@ -410,39 +296,6 @@
             background: #153e6d;
         }
         
-        /* Events Section */
-        .events-placeholder {
-            background: white;
-            padding: 4rem 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .events-icon {
-            font-size: 4rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .events-placeholder p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            color: var(--text);
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
-            color: white;
-            text-align: center;
-        }
-        
-        .cta .section-title {
-            color: white;
-        }
-        
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -508,12 +361,6 @@
         }
         
         /* Responsive Styles */
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-        }
-        
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
@@ -544,22 +391,8 @@
                 display: flex;
             }
             
-            .hero h1 {
+            .page-header h1 {
                 font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .btn {
-                display: block;
-                margin: 0.5rem auto;
-                width: 80%;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
             }
             
             .product-grid {
@@ -568,7 +401,6 @@
         }
     </style>
 </head>
-
 <body>
     <!-- Header -->
     <header>
@@ -586,135 +418,39 @@
                 <i class="fas fa-bars"></i>
             </button>
             
-           <nav>
-    <ul id="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="apostle.html">Our Apostle</a></li>
-        <li><a href="experiences.html">Experiences</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="donate.html">Donate</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
+            <nav>
+                <ul id="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="apostle.html">Our Apostle</a></li>
+                 
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                    
+                    <li><a href="merchandise.html" class="active">Merchandise</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Page Header -->
+    <section class="page-header">
         <div class="container">
-            <h1>Experience Freedom in Christ</h1>
-            <p>Proclaiming freedom, restoring lives, and sharing God's love through the Gospel of Jesus Christ</p>
-            <div>
-                <a href="donate.html" class="btn">Support Our Mission</a>
-                <a href="contact.html" class="btn btn-outline">Join Us</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Links Section -->
-    <section class="quick-links">
-        <div class="container">
-            <h2 class="section-title">Quick Access</h2>
-            <div class="links-grid">
-                <div class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Partnership</h3>
-                    <p>Become a ministry partner and support our mission</p>
-                    <a href="donate.html#partnership" class="btn">Partner With Us</a>
-                </div>
-                
-                <div class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h3>One-on-One Ministry</h3>
-                    <p>Request a personal ministry session with Apostle Richard</p>
-                    <a href="donate.html#oneonone" class="btn">Register Now</a>
-                </div>
-                
-                <div class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-globe-africa"></i>
-                    </div>
-                    <h3>International Visitors</h3>
-                    <p>Planning to visit from outside South Africa? Register here</p>
-                    <a href="donate.html#international" class="btn">Visitor Registration</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Our Ministry</h2>
-            <div class="about-content">
-                <div>
-                    <p>Jesus Set Me Free Ministries is a registered non-profit organization dedicated to spreading the Gospel and serving communities in need. We believe in the transformative power of Jesus Christ to set people free from spiritual, emotional, and physical bondage.</p>
-                    
-                    <div class="vision-mission">
-                        <h3><i class="fas fa-eye"></i> Our Vision</h3>
-                        <p>To restore and share love as God loved the world, proclaiming His favor and setting the captives free.</p>
-                    </div>
-                    
-                    <div class="vision-mission">
-                        <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
-                        <p>Proclamation of the gospel to those who are lost, calling them to repentance and faith in Christ Jesus.</p>
-                    </div>
-                    
-                    <a href="about.html" class="btn" style="margin-top: 1.5rem;">Learn More About Us</a>
-                </div>
-                
-                <div>
-                    <img src="images/apostle-richard.jpg" alt="Apostle Richard Sekgobela" class="apostle-image">
-                    <div class="apostle-caption">Apostle Richard Sekgobela - Founder & Visionary</div>
-                    <a href="apostle.html" class="btn" style="margin-top: 1.5rem; display: block; text-align: center;">Meet Our Apostle</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Our Ministries</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cross"></i>
-                    </div>
-                    <h3>Worship Services</h3>
-                    <p>Join us for powerful worship services where we experience God's presence and hear from His Word.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Charity Outreach</h3>
-                    <p>We extend God's love through practical assistance to those in need in our communities.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tv"></i>
-                    </div>
-                    <h3>Heart of the World TV</h3>
-                    <p>Our media ministry spreading the Gospel through television and online platforms.</p>
-                </div>
-            </div>
+            <h1>Ministry Merchandise</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><i class="fas fa-chevron-right"></i></li>
+                <li>Merchandise</li>
+            </ul>
         </div>
     </section>
 
     <!-- Merchandise Section -->
-    <section id="merchandise">
+    <section>
         <div class="container">
-            <h2 class="section-title">Ministry Merchandise</h2>
-            
             <div class="merchandise-intro">
+                <h2 class="section-title">Ministry Apparel & Spiritual Items</h2>
                 <p>Support our ministry by purchasing our branded merchandise. All proceeds go toward funding our outreach programs and ministry operations.</p>
             </div>
             
@@ -722,35 +458,10 @@
                 <i class="fas fa-tshirt"></i>
                 <h3>Our Ministry Store is Coming Soon!</h3>
                 <p>We're currently preparing a collection of ministry t-shirts, spiritual items, and other merchandise that will be available for purchase to support our ministry work.</p>
-                <p>Check back soon for our store launch! In the meantime, you can support us through donations.</p>
-                <a href="donate.html" class="btn" style="margin-top: 1.5rem;">Support Through Donation</a>
+                <p>Check back soon for our store launch! In the meantime, you can view our planned items below.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events">
-        <div class="container">
-            <h2 class="section-title">Upcoming Events</h2>
             
-            <div class="events-placeholder">
-                <div class="events-icon">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
-                <h3>Upcoming Events Will Be Posted Here</h3>
-                <p>Check back regularly for information about our upcoming services, revivals, and special events.</p>
-                <p>For the latest updates, follow us on our social media channels or contact us directly.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2 class="section-title">Join Us in Making a Difference</h2>
-            <p>Your support enables us to continue our mission of spreading the Gospel and serving communities in need.</p>
-            <a href="donate.html" class="btn" style="margin-top: 2rem;">Donate Now</a>
-        </div>
+            
     </section>
 
     <!-- Footer -->
@@ -773,9 +484,11 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="apostle.html">Our Apostle</a></li>
-                      
+                        
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="donate.html">Donate</a></li>
+                        
+                        <li><a href="merchandise.html">Merchandise</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -807,6 +520,13 @@
         // Mobile menu toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             document.getElementById('menu').classList.toggle('show');
+        });
+        
+        // Notify button functionality
+        document.querySelectorAll('.notify-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Thank you for your interest! We will notify you when this item becomes available.');
+            });
         });
     </script>
 </body>
