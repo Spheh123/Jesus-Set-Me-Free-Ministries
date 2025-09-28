@@ -939,71 +939,161 @@
                 </div>
                 
                 <!-- International Visitors Form -->
-                <div id="internationalForm" class="form-content">
-                    <div class="form-intro">
-                        <h3>International Visitors Registration</h3>
-                        <p>For visitors coming from outside South Africa who wish to meet with Apostle Richard. Please complete this form and we will contact you to discuss your visit.</p>
-                    </div>
-                    
-                    <form id="internationalFormSubmit" method="POST">
-                        <div class="form-group">
-                            <label for="intlName" class="required">Full Name</label>
-                            <input type="text" id="intlName" name="Full Name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="intlCountry" class="required">Country of Residence</label>
-                            <input type="text" id="intlCountry" name="Country" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="intlPassport" class="required">Passport Number</label>
-                            <input type="text" id="intlPassport" name="Passport Number" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="intlContact" class="required">Contact Details</label>
-                            <input type="text" id="intlContact" name="Contact Details" required placeholder="Phone number and/or email">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="intlDates">Preferred Dates of Visit</label>
-                            <input type="text" id="intlDates" name="Preferred Dates" placeholder="Approximate dates you plan to visit">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="intlPurpose" class="required">Purpose of Visit</label>
-                            <textarea id="intlPurpose" name="Purpose of Visit" required placeholder="Please describe why you wish to meet with Apostle Richard"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="intlDuration">Planned Duration of Stay</label>
-                            <input type="text" id="intlDuration" name="Duration of Stay" placeholder="How long do you plan to stay in South Africa?">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="intlQuestions">Any Questions or Special Requests</label>
-                            <textarea id="intlQuestions" name="Questions or Requests" placeholder="Any specific questions or special requirements for your visit"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-center">Submit Registration</button>
-                    </form>
-                    
-                    <div class="loading" id="internationalLoading">
-                        <div class="loading-spinner"></div>
-                        <p>Processing your registration...</p>
-                    </div>
-                    
-                    <div id="internationalSuccess" class="success-message">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Registration Received!</h3>
-                        <p>We have received your contact information and will reach out to you accordingly.</p>
-                        <p><strong>Please do not make any travel arrangements before you hear from us or before we respond to your inquiry.</strong></p>
-                        <p>We will contact you shortly to discuss your visit.</p>
-                    </div>
+              <!-- International Visitors Form -->
+<div id="internationalForm" class="form-content">
+    <div class="form-intro">
+        <h3>International Visitors Registration</h3>
+        <p>For visitors coming from outside South Africa who wish to meet with Apostle Richard. Please complete this questionnaire thoroughly and honestly. This information helps us prepare for your visit and ensure we can provide the best spiritual guidance.</p>
+        
+        <div class="terms" style="background-color: #fff3cd; border-left: 4px solid #ffc107;">
+            <p><strong>Important Notice:</strong> Please complete this questionnaire in its entirety and submit it for review. <strong>Do not make any flight arrangements or travel bookings until you have received official confirmation from Jesus Set Me Free Ministries.</strong> We will contact you to discuss your visit after reviewing your submission.</p>
+        </div>
+    </div>
+    
+    <form id="internationalFormSubmit" method="POST">
+        <div class="form-group">
+            <label for="intlName" class="required">Full Name</label>
+            <input type="text" id="intlName" name="Full Name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="intlCountry" class="required">Country of Residence</label>
+            <input type="text" id="intlCountry" name="Country" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="intlPassport" class="required">Passport Number</label>
+            <input type="text" id="intlPassport" name="Passport Number" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="intlContact" class="required">Contact Details</label>
+            <input type="text" id="intlContact" name="Contact Details" required placeholder="Phone number and/or email">
+        </div>
+        
+        <div class="form-group">
+            <label for="intlDates">Preferred Dates of Visit</label>
+            <input type="text" id="intlDates" name="Preferred Dates" placeholder="Approximate dates you plan to visit">
+        </div>
+        
+        <div class="form-group">
+            <label for="intlDuration">Planned Duration of Stay</label>
+            <input type="text" id="intlDuration" name="Duration of Stay" placeholder="How long do you plan to stay in South Africa?">
+        </div>
+        
+        <!-- Questionnaire Section -->
+        <div class="form-group">
+            <label for="intlPurpose" class="required">Purpose of Visit</label>
+            <textarea id="intlPurpose" name="Purpose of Visit" required placeholder="Please describe in detail why you wish to meet with Apostle Richard"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label class="required">Have you received ministry from Apostle Richard before?</label>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="ministryYes" name="Previous Ministry" value="Yes" required>
+                    <label for="ministryYes">Yes</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="ministryNo" name="Previous Ministry" value="No">
+                    <label for="ministryNo">No</label>
                 </div>
             </div>
         </div>
+        
+        <div class="form-group">
+            <label for="intlTestimony" class="required">Your Spiritual Journey</label>
+            <textarea id="intlTestimony" name="Spiritual Journey" required placeholder="Please share your testimony or spiritual background"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="intlExpectations" class="required">Expectations from the Visit</label>
+            <textarea id="intlExpectations" name="Expectations" required placeholder="What are you hoping to receive or experience during your visit?"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label class="required">Are you currently facing any specific challenges?</label>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="challengesYes" name="Current Challenges" value="Yes" required>
+                    <label for="challengesYes">Yes</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="challengesNo" name="Current Challenges" value="No">
+                    <label for="challengesNo">No</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group" id="challengesDetailsGroup" style="display: none;">
+            <label for="intlChallenges">Please describe the challenges you are facing</label>
+            <textarea id="intlChallenges" name="Challenge Details" placeholder="Please be as detailed and honest as possible"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label class="required">Are you currently taking any medication?</label>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="medicationYes" name="Taking Medication" value="Yes" required>
+                    <label for="medicationYes">Yes</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="medicationNo" name="Taking Medication" value="No">
+                    <label for="medicationNo">No</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group" id="medicationDetailsGroup" style="display: none;">
+            <label for="intlMedication">Please list your current medications</label>
+            <textarea id="intlMedication" name="Medication Details" placeholder="List medications and dosages"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="intlAccommodation">Accommodation Plans</label>
+            <textarea id="intlAccommodation" name="Accommodation Plans" placeholder="Do you have accommodation arranged? If so, please provide details"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="intlTravelCompanions">Travel Companions</label>
+            <input type="text" id="intlTravelCompanions" name="Travel Companions" placeholder="Are you traveling with anyone? If so, please list names">
+        </div>
+        
+        <div class="form-group">
+            <label for="intlQuestions">Additional Questions or Special Requests</label>
+            <textarea id="intlQuestions" name="Questions or Requests" placeholder="Any specific questions or special requirements for your visit"></textarea>
+        </div>
+        
+        <div class="terms">
+            <p><strong>Declaration:</strong> I confirm that the information provided in this questionnaire is true and accurate to the best of my knowledge. I understand that this information will be treated with confidentiality and will only be used for ministry purposes. I agree not to make any travel arrangements until I receive official confirmation from Jesus Set Me Free Ministries.</p>
+            
+            <div class="form-check" style="margin-top: 1rem;">
+                <input type="checkbox" id="intlAgreement" name="Agreement" required class="form-check-input">
+                <label for="intlAgreement" class="form-check-label required">I have read and agree to the terms above</label>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-center">Submit Registration</button>
+    </form>
+    
+    <div class="loading" id="internationalLoading">
+        <div class="loading-spinner"></div>
+        <p>Processing your registration...</p>
+    </div>
+    
+    <div id="internationalSuccess" class="success-message">
+        <i class="fas fa-check-circle"></i>
+        <h3>Questionnaire Submitted Successfully!</h3>
+        <p>Thank you for completing the International Visitors Questionnaire. Your information has been received and is being reviewed.</p>
+        
+        <div class="terms" style="margin: 1.5rem 0; background-color: #e6f7ee; border-left: 4px solid #0a9552;">
+            <p><strong>Important:</strong> Please wait for our official response before making any travel arrangements. We will contact you at the provided contact details to discuss your visit and next steps.</p>
+            <p>Response time is typically 3-5 business days. If you have urgent inquiries, you may contact us at +27787952184.</p>
+        </div>
+        
+        <p>We appreciate your honesty in completing this questionnaire and look forward to potentially welcoming you to our ministry.</p>
+    </div>
+</div>
     </section>
 
     
