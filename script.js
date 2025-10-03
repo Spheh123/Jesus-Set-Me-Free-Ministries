@@ -1,22 +1,50 @@
-// Show/hide challenge details based on selection
-document.getElementById('challengesYes').addEventListener('change', function() {
-    document.getElementById('challengesDetailsGroup').style.display = this.checked ? 'block' : 'none';
-});
-
-document.getElementById('challengesNo').addEventListener('change', function() {
-    document.getElementById('challengesDetailsGroup').style.display = 'none';
-});
-
-// Show/hide medication details based on selection
+// Show/hide medication details based on selection (Updated for new form)
 document.getElementById('medicationYes').addEventListener('change', function() {
-    document.getElementById('medicationDetailsGroup').style.display = this.checked ? 'block' : 'none';
+    const medicationDetailsGroup = document.getElementById('medicationDetailsGroup');
+    const medicationTextarea = document.getElementById('intlMedication');
+    const medicalReport = document.getElementById('medicalReport');
+    
+    if (this.checked) {
+        medicationDetailsGroup.style.display = 'block';
+        medicationTextarea.setAttribute('required', 'true');
+        medicalReport.setAttribute('required', 'true');
+    } else {
+        medicationDetailsGroup.style.display = 'none';
+        medicationTextarea.removeAttribute('required');
+        medicalReport.removeAttribute('required');
+    }
 });
 
 document.getElementById('medicationNo').addEventListener('change', function() {
-    document.getElementById('medicationDetailsGroup').style.display = 'none';
+    const medicationDetailsGroup = document.getElementById('medicationDetailsGroup');
+    const medicationTextarea = document.getElementById('intlMedication');
+    const medicalReport = document.getElementById('medicalReport');
+    
+    medicationDetailsGroup.style.display = 'none';
+    medicationTextarea.removeAttribute('required');
+    medicalReport.removeAttribute('required');
 });
 
-// International form submission (unchanged from your original code)
+// Initialize medication section on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Set initial state for medication section
+    const medicationYes = document.getElementById('medicationYes');
+    const medicationDetailsGroup = document.getElementById('medicationDetailsGroup');
+    const medicationTextarea = document.getElementById('intlMedication');
+    const medicalReport = document.getElementById('medicalReport');
+    
+    if (medicationYes.checked) {
+        medicationDetailsGroup.style.display = 'block';
+        medicationTextarea.setAttribute('required', 'true');
+        medicalReport.setAttribute('required', 'true');
+    } else {
+        medicationDetailsGroup.style.display = 'none';
+        medicationTextarea.removeAttribute('required');
+        medicalReport.removeAttribute('required');
+    }
+});
+
+// International form submission (Updated for new form structure)
 document.getElementById('internationalFormSubmit').addEventListener('submit', function(e) {
     e.preventDefault();
     
