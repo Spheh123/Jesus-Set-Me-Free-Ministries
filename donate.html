@@ -602,6 +602,24 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .health-warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .health-warning h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+
+        .health-warning p {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -922,18 +940,13 @@
                             <input type="text" id="intlDuration" name="Duration of Stay" placeholder="How long do you plan to stay in South Africa?">
                         </div>
                         
-                        <!-- Expectations Section -->
-                        <div class="form-group">
-                            <label for="intlExpectations" class="required">What is the primary purpose of your visit?</label>
-                            <select id="intlExpectations" name="Expectations" required>
-                                <option value="">Select an option</option>
-                                <option value="Healing">Healing</option>
-                                <option value="Deliverance">Deliverance</option>
-                                <option value="Direction">Direction</option>
-                            </select>
+                        <!-- Health Assessment Section -->
+                        <div class="health-warning">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Important Health Notice</h4>
+                            <p><strong>DO NOT stop taking your medication while planning to visit the Apostle.</strong> Some people have an ignorant faith and stop their medication without the Apostle knowing their health status. This is dangerous and can have serious health consequences.</p>
+                            <p><strong>You must continue all prescribed medications as directed by your doctor.</strong></p>
                         </div>
                         
-                        <!-- Health Assessment Section -->
                         <div class="form-group">
                             <label class="required">Are you currently experiencing any health challenges?</label>
                             <div class="radio-group">
@@ -979,9 +992,11 @@
                             <textarea id="intlMedication" name="Medication Details" placeholder="List all medications, dosages, and duration"></textarea>
                             
                             <p style="color: #8e1c1c; font-size: 0.9rem; margin-top: 0.5rem;">
-                                <strong>Required:</strong> You must attach recent medical reports from your doctor.
+                                <strong>Required:</strong> You must bring recent medical reports from your doctor when you visit.
                             </p>
-                            <input type="file" id="medicalReport" name="Medical Report" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="margin-top: 0.5rem;">
+                            <p style="color: #1a4b8c; font-size: 0.9rem; margin-top: 0.5rem;">
+                                <strong>Important:</strong> Continue taking all prescribed medications as directed by your doctor. Do not stop any medication without medical supervision.
+                            </p>
                         </div>
 
                         <!-- Mobility Assessment -->
@@ -1009,25 +1024,6 @@
                         </div>
                         
                         <!-- Spiritual Section -->
-                        <div class="form-group">
-                            <label for="intlPurpose" class="required">Purpose of Visit (Spiritual)</label>
-                            <textarea id="intlPurpose" name="Purpose of Visit" required placeholder="Please describe in detail why you wish to meet with Apostle Richard from a spiritual perspective"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="required">Have you received ministry from Apostle Richard before?</label>
-                            <div class="radio-group">
-                                <div class="radio-option">
-                                    <input type="radio" id="ministryYes" name="Previous Ministry" value="Yes" required>
-                                    <label for="ministryYes">Yes</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="ministryNo" name="Previous Ministry" value="No">
-                                    <label for="ministryNo">No</label>
-                                </div>
-                            </div>
-                        </div>
-                        
                         <div class="form-group">
                             <label for="intlTestimony" class="required">Your Spiritual Journey and Testimony</label>
                             <textarea id="intlTestimony" name="Spiritual Journey" required placeholder="Please share your testimony or spiritual background"></textarea>
@@ -1068,7 +1064,7 @@
                         <div class="terms">
                             <p><strong>Declaration:</strong> I confirm that the information provided in this questionnaire is true and accurate to the best of my knowledge. I understand that this information will be treated with confidentiality and will only be used for ministry purposes. I agree not to make any travel arrangements until I receive official confirmation from Jesus Set Me Free Ministries.</p>
                             <p><strong>Travel Companion Policy:</strong> I understand that every individual traveling to see the Apostle must complete and submit their own separate form, and no one will be attended to without a personally submitted questionnaire.</p>
-                            <p><strong>Medical Disclosure:</strong> I understand that accurate health information is essential for proper spiritual guidance and ministry.</p>
+                            <p><strong>Medical Disclosure:</strong> I understand that accurate health information is essential for proper spiritual guidance and ministry. I acknowledge that I must continue all prescribed medications as directed by my doctor and must not stop any medication without proper medical supervision.</p>
                             
                             <div class="form-check" style="margin-top: 1rem;">
                                 <input type="checkbox" id="intlAgreement" name="Agreement" required class="form-check-input">
@@ -1093,6 +1089,7 @@
                             <p><strong>Important:</strong> Please wait for our official response before making any travel arrangements. We will contact you at the provided contact details to discuss your visit and next steps.</p>
                             <p><strong>Travel Companions:</strong> Remember that every person traveling with you must submit their own separate form.</p>
                             <p><strong>Medical Reports:</strong> If you indicated any health conditions, please ensure you bring all required medical reports if your visit is confirmed.</p>
+                            <p><strong>Medication:</strong> Continue taking all prescribed medications as directed by your doctor. Do not stop any medication without medical supervision.</p>
                             <p>Response time is typically 3-5 business days. If you have urgent inquiries, you may contact us at +27787952184.</p>
                         </div>
                         
@@ -1231,11 +1228,9 @@
             if (medicationYes.checked) {
                 medicationDetailsGroup.style.display = 'block';
                 document.getElementById('intlMedication').setAttribute('required', 'true');
-                document.getElementById('medicalReport').setAttribute('required', 'true');
             } else {
                 medicationDetailsGroup.style.display = 'none';
                 document.getElementById('intlMedication').removeAttribute('required');
-                document.getElementById('medicalReport').removeAttribute('required');
             }
         }
 
