@@ -187,6 +187,61 @@
             background: white;
             color: var(--primary);
         }
+
+        /* Testimonies Quick Access Section */
+        .testimonies-access {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .testimonies-access .section-title {
+            color: white;
+        }
+        
+        .testimonies-access p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+        
+        .testimony-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .testimony-btn {
+            background: white;
+            color: var(--primary);
+            padding: 1.5rem 2.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            min-width: 250px;
+        }
+        
+        .testimony-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .testimony-btn i {
+            font-size: 2.5rem;
+        }
         
         /* Quick Links Section */
         .quick-links {
@@ -562,6 +617,15 @@
                 margin-left: 0;
             }
             
+            .testimony-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .testimony-btn {
+                width: 80%;
+            }
+            
             .product-grid {
                 grid-template-columns: 1fr;
             }
@@ -608,6 +672,32 @@
             <div>
                 <a href="donate.html" class="btn">Support Our Mission</a>
                 <a href="contact.html" class="btn btn-outline">Join Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonies Quick Access Section -->
+    <section class="testimonies-access">
+        <div class="container">
+            <h2 class="section-title">Share & Watch Testimonies</h2>
+            <p>Be inspired by powerful testimonies of God's work through our ministry, or share your own story of transformation</p>
+            
+            <div class="testimony-buttons">
+                <a href="experiences.html" class="testimony-btn">
+                    <i class="fas fa-play-circle"></i>
+                    <div>
+                        <h3>Watch Testimonies</h3>
+                        <p>Be inspired by powerful stories of healing and deliverance</p>
+                    </div>
+                </a>
+                
+                <a href="experiences.html" class="testimony-btn">
+                    <i class="fas fa-share-alt"></i>
+                    <div>
+                        <h3>Share Your Testimony</h3>
+                        <p>Tell others how God has transformed your life</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -773,7 +863,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="apostle.html">Our Apostle</a></li>
-                      
+                        <li><a href="experiences.html">Experiences</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="donate.html">Donate</a></li>
                         <li><a href="contact.html">Contact</a></li>
