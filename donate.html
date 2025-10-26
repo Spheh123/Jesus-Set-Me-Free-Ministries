@@ -257,6 +257,103 @@
             color: var(--secondary);
             width: 20px;
         }
+
+        /* PayFast Online Donations Section */
+        .online-donations {
+            background-color: var(--light);
+            padding: 5rem 0;
+        }
+
+        .donation-amounts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .amount-option {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .amount-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .amount-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .custom-amount {
+            margin: 2rem 0;
+        }
+
+        .custom-amount input {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            display: block;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .custom-amount input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .payfast-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .required:after {
+            content: " *";
+            color: var(--accent);
+        }
         
         /* Form Navigation */
         .form-navigation {
@@ -303,37 +400,6 @@
         .form-intro {
             margin-bottom: 2rem;
             text-align: center;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-        }
-        
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .required:after {
-            content: " *";
-            color: var(--accent);
         }
         
         .form-bank-details {
@@ -395,6 +461,17 @@
             margin: 2rem auto 0;
             text-align: center;
         }
+
+        .btn-payfast {
+            background: linear-gradient(135deg, #00a650 0%, #008c43 100%);
+            width: 100%;
+            font-size: 1.1rem;
+            padding: 1.2rem 2rem;
+        }
+
+        .btn-payfast:hover {
+            background: linear-gradient(135deg, #008c43 0%, #007a38 100%);
+        }
         
         /* Success Message */
         .success-message {
@@ -410,6 +487,25 @@
             font-size: 3rem;
             color: #0a9552;
             margin-bottom: 1rem;
+        }
+
+        .payment-message {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            margin: 2rem 0;
+        }
+
+        .payment-success {
+            background-color: #e6f7ee;
+            border-left: 5px solid #0a9552;
+        }
+
+        .payment-cancelled {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
         }
         
         /* Footer */
@@ -518,6 +614,10 @@
             .form-navigation {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .donation-amounts {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -677,13 +777,131 @@
         </div>
     </section>
 
-    <!-- Donate Section -->
+    <!-- Check for payment status in URL parameters -->
+    <script>
+        // Check URL for payment status
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentStatus = urlParams.get('payment_status');
+        
+        // Show payment status messages
+        if (paymentStatus === 'success') {
+            document.write(`
+                <section>
+                    <div class="container">
+                        <div class="payment-message payment-success">
+                            <i class="fas fa-check-circle" style="font-size: 4rem; color: #0a9552; margin-bottom: 1.5rem;"></i>
+                            <h2>Thank You for Your Generous Donation!</h2>
+                            <p style="font-size: 1.2rem; margin: 1rem 0;">Thank you for partnering with Jesus Set Me Free Ministries! Your transaction was successful. May God richly bless your seed.</p>
+                            <p style="margin: 1rem 0;">Your support enables us to continue spreading the Gospel and serving communities in need.</p>
+                            <a href="index.html" class="btn">Return to Homepage</a>
+                        </div>
+                    </div>
+                </section>
+            `);
+        } else if (paymentStatus === 'cancelled') {
+            document.write(`
+                <section>
+                    <div class="container">
+                        <div class="payment-message payment-cancelled">
+                            <i class="fas fa-pray" style="font-size: 4rem; color: #856404; margin-bottom: 1.5rem;"></i>
+                            <h2>Payment Not Completed</h2>
+                            <p style="font-size: 1.2rem; margin: 1rem 0;">We understand that sometimes plans change. Your intention to support our ministry is still greatly appreciated.</p>
+                            <p style="margin: 1rem 0;">If you encountered any issues or would like to try again, we invite you to complete your donation when you're ready.</p>
+                            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                                <a href="#online-donations" class="btn">Try Again</a>
+                                <a href="index.html" class="btn" style="background: var(--primary);">Return to Website</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `);
+        }
+    </script>
+
+    <!-- Online Donations Section -->
+    <section class="online-donations" id="online-donations">
+        <div class="container">
+            <h2 class="section-title">Give Online Securely</h2>
+            <div class="donate-intro">
+                <p>Make a secure online donation using PayFast. Your contribution helps us continue our mission of spreading the Gospel and serving communities.</p>
+            </div>
+
+            <div class="payfast-form">
+                <form action="https://www.payfast.co.za/eng/process" method="post">
+                    <!-- PayFast Required Fields -->
+                    <input type="hidden" name="merchant_id" value="31420263">
+                    <input type="hidden" name="merchant_key" value="buurwx1golnsv">
+                    <input type="hidden" name="return_url" value="https://yourwebsite.com/donate.html?payment_status=success">
+                    <input type="hidden" name="cancel_url" value="https://yourwebsite.com/donate.html?payment_status=cancelled">
+                    <input type="hidden" name="notify_url" value="https://yourwebsite.com/notify.php">
+                    
+                    <!-- Donation Amount Selection -->
+                    <div class="form-group">
+                        <label class="required">Select Donation Amount</label>
+                        <div class="donation-amounts">
+                            <div class="amount-option" data-amount="50">R50</div>
+                            <div class="amount-option" data-amount="100">R100</div>
+                            <div class="amount-option" data-amount="200">R200</div>
+                            <div class="amount-option" data-amount="500">R500</div>
+                            <div class="amount-option" data-amount="1000">R1000</div>
+                            <div class="amount-option" data-amount="custom">Custom</div>
+                        </div>
+                    </div>
+
+                    <!-- Custom Amount Input -->
+                    <div class="form-group custom-amount" style="display: none;">
+                        <label for="custom_amount" class="required">Enter Custom Amount (ZAR)</label>
+                        <input type="number" id="custom_amount" name="custom_amount" min="1" placeholder="Enter amount in Rands">
+                    </div>
+
+                    <!-- Hidden amount field for PayFast -->
+                    <input type="hidden" name="amount" id="payfast_amount" value="100" required>
+
+                    <!-- Donor Information -->
+                    <div class="form-group">
+                        <label for="donor_name" class="required">Your Name</label>
+                        <input type="text" id="donor_name" name="name_first" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donor_email" class="required">Email Address</label>
+                        <input type="email" id="donor_email" name="email_address" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donation_type">Donation Type (Optional)</label>
+                        <select id="donation_type" name="item_name">
+                            <option value="General Donation">General Donation</option>
+                            <option value="Tithes">Tithes</option>
+                            <option value="Offering">Offering</option>
+                            <option value="Missions Support">Missions Support</option>
+                            <option value="Building Fund">Building Fund</option>
+                            <option value="Outreach Program">Outreach Program</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donor_message">Message (Optional)</label>
+                        <textarea id="donor_message" name="custom_str1" placeholder="Any message or prayer request..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-payfast">
+                        <i class="fas fa-lock"></i> Donate Securely via PayFast
+                    </button>
+
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <img src="https://www.payfast.co.za/assets/images/logos/logo_colour.png" alt="PayFast" style="height: 30px; margin: 0 auto;">
+                        <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem;">100% Secure Payment Processing</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Traditional Banking Section -->
     <section>
         <div class="container">
-            <div class="donate-intro">
-                <h2 class="section-title">Your Support Makes a Difference</h2>
-                <p>Your generous donations help us continue our mission of spreading the Gospel and serving communities in need. Through your support, we can bring healing, deliverance, and restoration to individuals, families, and communities through the uncompromised Word of God.</p>
-            </div>
+            <h2 class="section-title">Traditional Banking Options</h2>
             
             <div class="donate-options">
                 <div class="donate-option">
@@ -755,7 +973,7 @@
                         <p>Join us as a ministry partner to support our mission of spreading the Gospel and serving communities. Your partnership enables us to continue this important work.</p>
                     </div>
                     
-                    <form id="partnershipFormSubmit" method="POST" action="https://formsubmit.co/jesussetm@gmail.com">
+                    <form id="partnershipFormSubmit" method="POST" action="https://formsubmit.co/1c628e46420f41fa9fd03f34d05be242">
                         <input type="hidden" name="_subject" value="New Partnership Registration">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_captcha" value="false">
@@ -891,7 +1109,7 @@
                         </div>
                     </div>
                     
-                    <form id="internationalFormSubmit" method="POST" action="https://formsubmit.co/jesussetm@gmail.com">
+                    <form id="internationalFormSubmit" method="POST" action="https://formsubmit.co/1c628e46420f41fa9fd03f34d05be242">
                         <input type="hidden" name="_subject" value="International Visitor Registration">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_captcha" value="false">
@@ -1256,10 +1474,61 @@
             }
         }
 
+        // PayFast Donation Amount Selection
+        document.querySelectorAll('.amount-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                document.querySelectorAll('.amount-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                const amount = this.getAttribute('data-amount');
+                const customAmountGroup = document.querySelector('.custom-amount');
+                
+                if (amount === 'custom') {
+                    customAmountGroup.style.display = 'block';
+                    document.getElementById('custom_amount').focus();
+                } else {
+                    customAmountGroup.style.display = 'none';
+                    document.getElementById('payfast_amount').value = amount;
+                }
+            });
+        });
+
+        // Update PayFast amount when custom amount is entered
+        document.getElementById('custom_amount')?.addEventListener('input', function() {
+            document.getElementById('payfast_amount').value = this.value;
+        });
+
+        // Validate custom amount
+        document.querySelector('form[action*="payfast"]')?.addEventListener('submit', function(e) {
+            const selectedOption = document.querySelector('.amount-option.selected');
+            if (!selectedOption) {
+                e.preventDefault();
+                alert('Please select a donation amount');
+                return;
+            }
+            
+            if (selectedOption.getAttribute('data-amount') === 'custom') {
+                const customAmount = document.getElementById('custom_amount').value;
+                if (!customAmount || customAmount < 1) {
+                    e.preventDefault();
+                    alert('Please enter a valid donation amount');
+                    return;
+                }
+            }
+        });
+
         // Initialize form on page load
         document.addEventListener('DOMContentLoaded', function() {
             toggleHealthDetails();
             toggleMedicationDetails();
+            
+            // Set default selected amount
+            document.querySelector('.amount-option[data-amount="100"]').classList.add('selected');
         });
         
         // Partnership form submission
