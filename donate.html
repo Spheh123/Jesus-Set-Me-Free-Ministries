@@ -147,9 +147,11 @@
             cursor: pointer;
         }
         
-        /* Page Header */
+        /* Page Header - FIXED BACKGROUND IMAGE */
         .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), #2c3e50;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-background.jpg');
+            background-size: cover;
+            background-position: center;
             color: white;
             padding: 5rem 0;
             text-align: center;
@@ -620,6 +622,18 @@
             color: #856404;
             margin-bottom: 0.5rem;
         }
+        
+        .form-check {
+            margin-top: 1rem;
+        }
+        
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+        
+        .form-check-label {
+            display: inline;
+        }
     </style>
 </head>
 <body>
@@ -644,14 +658,14 @@
                     <li><a href="apostle.html">Our Apostle</a></li>
                     <li><a href="experiences.html">Experiences</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="donate.html" class="active">Donate</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Page Header -->
+    <!-- Page Header with Background Image -->
     <section class="page-header">
         <div class="container">
             <h1>Support Our Ministry</h1>
@@ -694,7 +708,7 @@
                         <p><i class="fas fa-building"></i> <strong>Mukuru Money Bank</strong></p>
                         <p><i class="fas fa-code-branch"></i> Access Bank Branch: 410506</p>
                         <p><i class="fas fa-hashtag"></i> ACC Number: 51703135966</p>
-                        <p></i> Apostle Richard: +27787952184</p>
+                        <p><i class="fas fa-user"></i> Apostle Richard: +27787952184</p>
                     </div>
                     
                     <div class="bank-details">
@@ -741,7 +755,11 @@
                         <p>Join us as a ministry partner to support our mission of spreading the Gospel and serving communities. Your partnership enables us to continue this important work.</p>
                     </div>
                     
-                    <form id="partnershipFormSubmit" method="POST">
+                    <form id="partnershipFormSubmit" method="POST" action="https://formsubmit.co/jesussetm@gmail.com">
+                        <input type="hidden" name="_subject" value="New Partnership Registration">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        
                         <div class="form-group">
                             <label for="fullName" class="required">Full Name</label>
                             <input type="text" id="fullName" name="Full Name" required>
@@ -814,7 +832,7 @@
                             <p><i class="fas fa-building"></i> <strong>Mukuru Money Bank</strong></p>
                             <p><i class="fas fa-code-branch"></i> Access Bank Branch: 410506</p>
                             <p><i class="fas fa-hashtag"></i> ACC Number: 51703135966</p>
-                            <p></i> Apostle Richard: +27787952184</p>
+                            <p><i class="fas fa-user"></i> Apostle Richard: +27787952184</p>
                         </div>
                         
                         <button type="submit" class="btn btn-center">Submit Partnership Application</button>
@@ -861,7 +879,7 @@
                     </div>
                 </div>
                 
-                <!-- International Visitors Form - UPDATED -->
+                <!-- International Visitors Form - FIXED -->
                 <div id="internationalForm" class="form-content">
                     <div class="form-intro">
                         <h3>International Visitors Registration</h3>
@@ -873,7 +891,11 @@
                         </div>
                     </div>
                     
-                    <form id="internationalFormSubmit" method="POST">
+                    <form id="internationalFormSubmit" method="POST" action="https://formsubmit.co/jesussetm@gmail.com">
+                        <input type="hidden" name="_subject" value="International Visitor Registration">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        
                         <!-- Personal Information -->
                         <div class="form-group">
                             <label for="intlName" class="required">Full Name</label>
@@ -943,7 +965,7 @@
                         <!-- Health Assessment Section -->
                         <div class="health-warning">
                             <h4><i class="fas fa-exclamation-triangle"></i> Important Health Notice</h4>
-                            <p><strong>DO NOT stop taking your medication while planning to visit the Apostle.
+                            <p><strong>DO NOT stop taking your medication while planning to visit the Apostle.</strong></p>
                             <p><strong>You must continue all prescribed medications as directed by your doctor.</strong></p>
                         </div>
                         
@@ -1066,7 +1088,7 @@
                             <p><strong>Travel Companion Policy:</strong> I understand that every individual traveling to see the Apostle must complete and submit their own separate form, and no one will be attended to without a personally submitted questionnaire.</p>
                             <p><strong>Medical Disclosure:</strong> I understand that accurate health information is essential for proper spiritual guidance and ministry. I acknowledge that I must continue all prescribed medications as directed by my doctor and must not stop any medication without proper medical supervision.</p>
                             
-                            <div class="form-check" style="margin-top: 1rem;">
+                            <div class="form-check">
                                 <input type="checkbox" id="intlAgreement" name="Agreement" required class="form-check-input">
                                 <label for="intlAgreement" class="form-check-label required">I have read and agree to all the terms above</label>
                             </div>
@@ -1242,8 +1264,6 @@
         
         // Partnership form submission
         document.getElementById('partnershipFormSubmit').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             // Show loading indicator
             document.getElementById('partnershipLoading').style.display = 'block';
             
@@ -1254,15 +1274,6 @@
             
             const partnerCode = 202500 + partnerCount;
             
-            // Create a hidden iframe for form submission
-            const iframe = document.createElement('iframe');
-            iframe.name = 'formsubmit-iframe';
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
-            
-            // Change form target to the iframe
-            this.target = 'formsubmit-iframe';
-            
             // Add the partnership code as a hidden field to the form
             const codeInput = document.createElement('input');
             codeInput.type = 'hidden';
@@ -1270,40 +1281,11 @@
             codeInput.value = partnerCode;
             this.appendChild(codeInput);
             
-            // Add FormSubmit configuration as hidden fields
-            const subjectInput = document.createElement('input');
-            subjectInput.type = 'hidden';
-            subjectInput.name = '_subject';
-            subjectInput.value = 'New Partnership Registration - Code: ' + partnerCode;
-            this.appendChild(subjectInput);
-            
-            const emailInput = document.createElement('input');
-            emailInput.type = 'hidden';
-            emailInput.name = '_replyto';
-            emailInput.value = document.getElementById('contact').value.includes('@') ? 
-                document.getElementById('contact').value : 'jesussetm@gmail.com';
-            this.appendChild(emailInput);
-            
-            const templateInput = document.createElement('input');
-            templateInput.type = 'hidden';
-            templateInput.name = '_template';
-            templateInput.value = 'table';
-            this.appendChild(templateInput);
-            
-            const captchaInput = document.createElement('input');
-            captchaInput.type = 'hidden';
-            captchaInput.name = '_captcha';
-            captchaInput.value = 'false';
-            this.appendChild(captchaInput);
-            
-            // Change form action to use FormSubmit
-            this.action = 'https://formsubmit.co/jesussetm@gmail.com';
+            // Update the subject line with the partnership code
+            this.querySelector('input[name="_subject"]').value = 'New Partnership Registration - Code: ' + partnerCode;
             
             // Display the partnership code to the user
             document.getElementById('partnerCode').textContent = partnerCode;
-            
-            // Submit the form to the iframe
-            this.submit();
             
             // Hide the form and show success message after a delay
             setTimeout(function() {
@@ -1314,56 +1296,13 @@
                     top: document.getElementById('partnershipForm').offsetTop,
                     behavior: 'smooth'
                 });
-            }, 2000);
+            }, 1500);
         });
         
         // International form submission
         document.getElementById('internationalFormSubmit').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             // Show loading indicator
             document.getElementById('internationalLoading').style.display = 'block';
-            
-            // Create a hidden iframe for form submission
-            const iframe = document.createElement('iframe');
-            iframe.name = 'formsubmit-iframe';
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
-            
-            // Change form target to the iframe
-            this.target = 'formsubmit-iframe';
-            
-            // Add FormSubmit configuration as hidden fields
-            const subjectInput = document.createElement('input');
-            subjectInput.type = 'hidden';
-            subjectInput.name = '_subject';
-            subjectInput.value = 'International Visitor Registration - Questionnaire';
-            this.appendChild(subjectInput);
-            
-            const emailInput = document.createElement('input');
-            emailInput.type = 'hidden';
-            emailInput.name = '_replyto';
-            emailInput.value = document.getElementById('intlContact').value.includes('@') ? 
-                document.getElementById('intlContact').value : 'jesussetm@gmail.com';
-            this.appendChild(emailInput);
-            
-            const templateInput = document.createElement('input');
-            templateInput.type = 'hidden';
-            templateInput.name = '_template';
-            templateInput.value = 'table';
-            this.appendChild(templateInput);
-            
-            const captchaInput = document.createElement('input');
-            captchaInput.type = 'hidden';
-            captchaInput.name = '_captcha';
-            captchaInput.value = 'false';
-            this.appendChild(captchaInput);
-            
-            // Change form action to use FormSubmit
-            this.action = 'https://formsubmit.co/jesussetm@gmail.com';
-            
-            // Submit the form to the iframe
-            this.submit();
             
             // Hide the form and show success message after a delay
             setTimeout(function() {
@@ -1374,7 +1313,7 @@
                     top: document.getElementById('internationalForm').offsetTop,
                     behavior: 'smooth'
                 });
-            }, 2000);
+            }, 1500);
         });
     </script>
 </body>
