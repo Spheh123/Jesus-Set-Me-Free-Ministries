@@ -300,6 +300,14 @@
             margin-bottom: 1rem;
         }
         
+        .loading-message {
+            text-align: center;
+            padding: 2rem;
+            grid-column: 1 / -1;
+            font-style: italic;
+            color: var(--primary);
+        }
+        
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -465,97 +473,10 @@
             </div>
             
             <div class="gallery-grid">
-                <!-- IMPORTANT: Replace the image filenames below with your actual image filenames -->
-                <!-- The images are in: images/Charity Work/ folder -->
-                
-                <!-- Charity Image 1 -->
-                <div class="gallery-item" data-category="charity">
-                    <img src="images/Charity Work/charity1.jpg" alt="Charity work by Jesus Set Me Free Ministries">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work</div>
-                        <div class="gallery-date">2024</div>
-                    </div>
-                </div>
-                
-                <!-- Charity Image 2 -->
-                <div class="gallery-item" data-category="charity">
-                    <img src="images/Charity Work/charity2.jpg" alt="Charity work by Jesus Set Me Free Ministries">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work</div>
-                        <div class="gallery-date">2024</div>
-                    </div>
-                </div>
-                
-                <!-- Charity Image 3 -->
-                <div class="gallery-item" data-category="charity">
-                    <img src="images/Charity Work/charity3.jpg" alt="Charity work by Jesus Set Me Free Ministries">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work</div>
-                        <div class="gallery-date">2024</div>
-                    </div>
-                </div>
-                
-                <!-- Charity Image 4 -->
-                <div class="gallery-item" data-category="charity">
-                    <img src="images/Charity Work/charity4.jpg" alt="Charity work by Jesus Set Me Free Ministries">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work</div>
-                        <div class="gallery-date">2024</div>
-                    </div>
-                </div>
-                
-                <!-- Charity Image 5 -->
-                <div class="gallery-item" data-category="charity">
-                    <img src="images/Charity Work/charity5.jpg" alt="Charity work by Jesus Set Me Free Ministries">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work</div>
-                        <div class="gallery-date">2024</div>
-                    </div>
-                </div>
-                
-                <!-- Charity Image 6 -->
-                <div class="gallery-item" data-category="charity">
-                    <img src="images/Charity Work/charity6.jpg" alt="Charity work by Jesus Set Me Free Ministries">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work</div>
-                        <div class="gallery-date">2024</div>
-                    </div>
-                </div>
-                
-                <!-- Charity Image 7 -->
-                <div class="gallery-item" data-category="charity">
-                    <img src="images/Charity Work/charity7.jpg" alt="Charity work by Jesus Set Me Free Ministries">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work</div>
-                        <div class="gallery-date">2024</div>
-                    </div>
-                </div>
-                
-                <!-- Charity Image 8 -->
-                <div class="gallery-item" data-category="charity">
-                    <img src="images/Charity Work/charity8.jpg" alt="Charity work by Jesus Set Me Free Ministries">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work</div>
-                        <div class="gallery-date">2024</div>
-                    </div>
-                </div>
-                
-                <!-- Charity Image 9 -->
-                <div class="gallery-item" data-category="charity">
-                    <img src="images/Charity Work/charity9.jpg" alt="Charity work by Jesus Set Me Free Ministries">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work</div>
-                        <div class="gallery-date">2024</div>
-                    </div>
-                </div>
-                
-                <!-- Charity Image 10 -->
-                <div class="gallery-item" data-category="charity">
-                    <img src="images/Charity Work/charity10.jpg" alt="Charity work by Jesus Set Me Free Ministries">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work</div>
-                        <div class="gallery-date">2024</div>
-                    </div>
+                <!-- Images will be loaded here by JavaScript -->
+                <div class="loading-message">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading charity images...</p>
                 </div>
             </div>
         </div>
@@ -617,29 +538,88 @@
             document.getElementById('menu').classList.toggle('show');
         });
         
-        // Gallery filtering functionality
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        // Function to generate image filenames from IMG-20250913-WA0082.jpg to IMG-20250913-WA0145.jpg
+        function generateImageFilenames() {
+            const filenames = [];
+            const baseName = "IMG-20250913-WA";
+            
+            // Your images range from 0082 to 0145
+            for (let i = 82; i <= 145; i++) {
+                // Format the number with leading zeros (0082, 0083, ..., 0145)
+                const number = i.toString().padStart(4, '0');
+                filenames.push(`${baseName}${number}.jpg`);
+            }
+            
+            return filenames;
+        }
         
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active button
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+        // Function to load charity images
+        function loadCharityImages() {
+            const galleryGrid = document.querySelector('.gallery-grid');
+            const imageFilenames = generateImageFilenames();
+            
+            // Clear the loading message
+            galleryGrid.innerHTML = '';
+            
+            // Create gallery items for each image
+            imageFilenames.forEach((filename, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.setAttribute('data-category', 'charity');
                 
-                const selectedCategory = button.getAttribute('data-category');
+                // Create the date from the filename
+                const dateFromFilename = filename.substring(4, 12); // Extract YYYYMMDD from IMG-YYYYMMDD-WAXXXX.jpg
+                const year = dateFromFilename.substring(0, 4);
+                const month = dateFromFilename.substring(4, 6);
+                const day = dateFromFilename.substring(6, 8);
+                const formattedDate = `${day}/${month}/${year}`;
                 
-                // Filter gallery items
-                galleryItems.forEach(item => {
-                    const itemCategory = item.getAttribute('data-category');
+                galleryItem.innerHTML = `
+                    <img src="images/Charity Work/${filename}" alt="Charity work ${index + 1} - Jesus Set Me Free Ministries" onerror="this.src='https://via.placeholder.com/300x250/1a4b8c/ffffff?text=Loading+Error'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work ${index + 1}</div>
+                        <div class="gallery-date">${formattedDate}</div>
+                    </div>
+                `;
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+            
+            // Reinitialize the filtering after images are loaded
+            initializeFiltering();
+        }
+        
+        // Gallery filtering functionality
+        function initializeFiltering() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
                     
-                    if (selectedCategory === 'all' || selectedCategory === itemCategory) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
+                    const selectedCategory = button.getAttribute('data-category');
+                    
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        const itemCategory = item.getAttribute('data-category');
+                        
+                        if (selectedCategory === 'all' || selectedCategory === itemCategory) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
                 });
             });
+        }
+        
+        // Load images when page is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Small delay to ensure DOM is fully loaded
+            setTimeout(loadCharityImages, 100);
         });
     </script>
 </body>
