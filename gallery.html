@@ -465,11 +465,97 @@
             </div>
             
             <div class="gallery-grid">
-                <div class="empty-gallery">
-                    <i class="fas fa-camera"></i>
-                    <h3>Gallery Coming Soon</h3>
-                    <p>We're preparing to share images of our ministry work and how your donations are making an impact.</p>
-                    <p>Check back soon to see the difference your support is making in our communities.</p>
+                <!-- IMPORTANT: Replace the image filenames below with your actual image filenames -->
+                <!-- The images are in: images/Charity Work/ folder -->
+                
+                <!-- Charity Image 1 -->
+                <div class="gallery-item" data-category="charity">
+                    <img src="images/Charity Work/charity1.jpg" alt="Charity work by Jesus Set Me Free Ministries">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work</div>
+                        <div class="gallery-date">2024</div>
+                    </div>
+                </div>
+                
+                <!-- Charity Image 2 -->
+                <div class="gallery-item" data-category="charity">
+                    <img src="images/Charity Work/charity2.jpg" alt="Charity work by Jesus Set Me Free Ministries">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work</div>
+                        <div class="gallery-date">2024</div>
+                    </div>
+                </div>
+                
+                <!-- Charity Image 3 -->
+                <div class="gallery-item" data-category="charity">
+                    <img src="images/Charity Work/charity3.jpg" alt="Charity work by Jesus Set Me Free Ministries">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work</div>
+                        <div class="gallery-date">2024</div>
+                    </div>
+                </div>
+                
+                <!-- Charity Image 4 -->
+                <div class="gallery-item" data-category="charity">
+                    <img src="images/Charity Work/charity4.jpg" alt="Charity work by Jesus Set Me Free Ministries">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work</div>
+                        <div class="gallery-date">2024</div>
+                    </div>
+                </div>
+                
+                <!-- Charity Image 5 -->
+                <div class="gallery-item" data-category="charity">
+                    <img src="images/Charity Work/charity5.jpg" alt="Charity work by Jesus Set Me Free Ministries">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work</div>
+                        <div class="gallery-date">2024</div>
+                    </div>
+                </div>
+                
+                <!-- Charity Image 6 -->
+                <div class="gallery-item" data-category="charity">
+                    <img src="images/Charity Work/charity6.jpg" alt="Charity work by Jesus Set Me Free Ministries">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work</div>
+                        <div class="gallery-date">2024</div>
+                    </div>
+                </div>
+                
+                <!-- Charity Image 7 -->
+                <div class="gallery-item" data-category="charity">
+                    <img src="images/Charity Work/charity7.jpg" alt="Charity work by Jesus Set Me Free Ministries">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work</div>
+                        <div class="gallery-date">2024</div>
+                    </div>
+                </div>
+                
+                <!-- Charity Image 8 -->
+                <div class="gallery-item" data-category="charity">
+                    <img src="images/Charity Work/charity8.jpg" alt="Charity work by Jesus Set Me Free Ministries">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work</div>
+                        <div class="gallery-date">2024</div>
+                    </div>
+                </div>
+                
+                <!-- Charity Image 9 -->
+                <div class="gallery-item" data-category="charity">
+                    <img src="images/Charity Work/charity9.jpg" alt="Charity work by Jesus Set Me Free Ministries">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work</div>
+                        <div class="gallery-date">2024</div>
+                    </div>
+                </div>
+                
+                <!-- Charity Image 10 -->
+                <div class="gallery-item" data-category="charity">
+                    <img src="images/Charity Work/charity10.jpg" alt="Charity work by Jesus Set Me Free Ministries">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Charity Work</div>
+                        <div class="gallery-date">2024</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -531,13 +617,28 @@
             document.getElementById('menu').classList.toggle('show');
         });
         
-        // Gallery filtering functionality (for when you add images)
+        // Gallery filtering functionality
         const categoryButtons = document.querySelectorAll('.category-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
         categoryButtons.forEach(button => {
             button.addEventListener('click', () => {
+                // Update active button
                 categoryButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                // Filter functionality would go here when you add images
+                
+                const selectedCategory = button.getAttribute('data-category');
+                
+                // Filter gallery items
+                galleryItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    if (selectedCategory === 'all' || selectedCategory === itemCategory) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
             });
         });
     </script>
