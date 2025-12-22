@@ -308,6 +308,14 @@
             color: var(--primary);
         }
         
+        .image-counter {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -468,16 +476,20 @@
             <div class="gallery-categories">
                 <button class="category-btn active" data-category="all">All Activities</button>
                 <button class="category-btn" data-category="charity">Charity Work</button>
-                <button class="category-btn" data-category="events">Ministry Events</button>
-                <button class="category-btn" data-category="community">Church Service Recap</button>
+                <button class="category-btn" data-category="events">Church Service Recap</button>
+                <button class="category-btn" data-category="community">Community Outreach</button>
             </div>
             
             <div class="gallery-grid">
                 <!-- Images will be loaded here by JavaScript -->
                 <div class="loading-message">
                     <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading charity images...</p>
+                    <p>Loading gallery images...</p>
                 </div>
+            </div>
+            
+            <div class="image-counter" id="imageCounter">
+                <!-- Image count will be displayed here -->
             </div>
         </div>
     </section>
@@ -538,52 +550,100 @@
             document.getElementById('menu').classList.toggle('show');
         });
         
-        // Function to generate image filenames from IMG-20250913-WA0082.jpg to IMG-20250913-WA0145.jpg
-        function generateImageFilenames() {
+        // Function to generate Charity Work image filenames
+        function generateCharityImageFilenames() {
             const filenames = [];
             const baseName = "IMG-20250913-WA";
             
-            // Your images range from 0082 to 0145
+            // Charity Work images range from 0082 to 0145 (64 images)
             for (let i = 82; i <= 145; i++) {
-                // Format the number with leading zeros (0082, 0083, ..., 0145)
                 const number = i.toString().padStart(4, '0');
-                filenames.push(`${baseName}${number}.jpg`);
+                filenames.push({
+                    filename: `${baseName}${number}.jpg`,
+                    folder: 'Charity Work',
+                    category: 'charity'
+                });
             }
             
             return filenames;
         }
         
-        // Function to load charity images
-        function loadCharityImages() {
+        // Function to generate Church Service Recap image filenames
+        function generateServiceImageFilenames() {
+            const filenames = [];
+            const baseName = "IMG-20251104-WA";
+            
+            // Church Service Recap images range from 0024 to 0177 (154 images)
+            for (let i = 24; i <= 177; i++) {
+                const number = i.toString().padStart(4, '0');
+                filenames.push({
+                    filename: `${baseName}${number}.jpg`,
+                    folder: 'Church Service Recap',
+                    category: 'events'
+                });
+            }
+            
+            return filenames;
+        }
+        
+        // Function to load all images
+        function loadAllImages() {
             const galleryGrid = document.querySelector('.gallery-grid');
-            const imageFilenames = generateImageFilenames();
+            const imageCounter = document.getElementById('imageCounter');
+            
+            // Get images from both folders
+            const charityImages = generateCharityImageFilenames();
+            const serviceImages = generateServiceImageFilenames();
+            const allImages = [...charityImages, ...serviceImages];
             
             // Clear the loading message
             galleryGrid.innerHTML = '';
             
+            // Update button text to show "Church Service Recap"
+            document.querySelector('[data-category="events"]').textContent = `Church Service Recap (${serviceImages.length})`;
+            document.querySelector('[data-category="charity"]').textContent = `Charity Work (${charityImages.length})`;
+            document.querySelector('[data-category="all"]').textContent = `All Activities (${allImages.length})`;
+            
             // Create gallery items for each image
-            imageFilenames.forEach((filename, index) => {
+            allImages.forEach((imageData, index) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
-                galleryItem.setAttribute('data-category', 'charity');
+                galleryItem.setAttribute('data-category', imageData.category);
                 
                 // Create the date from the filename
-                const dateFromFilename = filename.substring(4, 12); // Extract YYYYMMDD from IMG-YYYYMMDD-WAXXXX.jpg
+                const dateFromFilename = imageData.filename.substring(4, 12);
                 const year = dateFromFilename.substring(0, 4);
                 const month = dateFromFilename.substring(4, 6);
                 const day = dateFromFilename.substring(6, 8);
                 const formattedDate = `${day}/${month}/${year}`;
                 
+                // Determine caption based on category
+                let caption = '';
+                if (imageData.category === 'charity') {
+                    caption = 'Charity Work';
+                } else if (imageData.category === 'events') {
+                    caption = 'Church Service';
+                }
+                
                 galleryItem.innerHTML = `
-                    <img src="images/Charity Work/${filename}" alt="Charity work ${index + 1} - Jesus Set Me Free Ministries" onerror="this.src='https://via.placeholder.com/300x250/1a4b8c/ffffff?text=Loading+Error'; this.onerror=null;">
+                    <img src="images/${imageData.folder}/${imageData.filename}" 
+                         alt="${caption} - Jesus Set Me Free Ministries" 
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/300x250/1a4b8c/ffffff?text=Image+Loading';">
                     <div class="gallery-overlay">
-                        <div class="gallery-caption">Charity Work ${index + 1}</div>
+                        <div class="gallery-caption">${caption}</div>
                         <div class="gallery-date">${formattedDate}</div>
                     </div>
                 `;
                 
                 galleryGrid.appendChild(galleryItem);
             });
+            
+            // Update image counter
+            imageCounter.innerHTML = `
+                Showing <strong>${allImages.length}</strong> images total: 
+                <strong>${charityImages.length}</strong> Charity Work + 
+                <strong>${serviceImages.length}</strong> Church Service Recap
+            `;
             
             // Reinitialize the filtering after images are loaded
             initializeFiltering();
@@ -593,6 +653,7 @@
         function initializeFiltering() {
             const categoryButtons = document.querySelectorAll('.category-btn');
             const galleryItems = document.querySelectorAll('.gallery-item');
+            const imageCounter = document.getElementById('imageCounter');
             
             categoryButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -601,6 +662,7 @@
                     button.classList.add('active');
                     
                     const selectedCategory = button.getAttribute('data-category');
+                    let visibleCount = 0;
                     
                     // Filter gallery items
                     galleryItems.forEach(item => {
@@ -608,10 +670,22 @@
                         
                         if (selectedCategory === 'all' || selectedCategory === itemCategory) {
                             item.style.display = 'block';
+                            visibleCount++;
                         } else {
                             item.style.display = 'none';
                         }
                     });
+                    
+                    // Update counter based on selection
+                    if (selectedCategory === 'all') {
+                        imageCounter.innerHTML = `Showing <strong>${galleryItems.length}</strong> images: <strong>${galleryItems.length}</strong> total images`;
+                    } else if (selectedCategory === 'charity') {
+                        const charityCount = document.querySelectorAll('[data-category="charity"]').length;
+                        imageCounter.innerHTML = `Showing <strong>${visibleCount}</strong> images: <strong>${charityCount}</strong> Charity Work images`;
+                    } else if (selectedCategory === 'events') {
+                        const eventsCount = document.querySelectorAll('[data-category="events"]').length;
+                        imageCounter.innerHTML = `Showing <strong>${visibleCount}</strong> images: <strong>${eventsCount}</strong> Church Service Recap images`;
+                    }
                 });
             });
         }
@@ -619,7 +693,7 @@
         // Load images when page is ready
         document.addEventListener('DOMContentLoaded', function() {
             // Small delay to ensure DOM is fully loaded
-            setTimeout(loadCharityImages, 100);
+            setTimeout(loadAllImages, 100);
         });
     </script>
 </body>
