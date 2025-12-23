@@ -571,13 +571,12 @@
         // Function to generate Church Service Recap image filenames
         function generateServiceImageFilenames() {
             const filenames = [];
-            const baseName = "IMG-20251104-WA";
+            const baseName = "IMG-20251104-";
             
-            // Church Service Recap images range from 0024 to 0177 (154 images)
-            for (let i = 24; i <= 177; i++) {
-                const number = i.toString().padStart(4, '0');
+            // Church Service Recap images range from 1 to 119 (119 images)
+            for (let i = 1; i <= 119; i++) {
                 filenames.push({
-                    filename: `${baseName}${number}.jpg`,
+                    filename: `${baseName}${i}.jpg`,
                     folder: 'Church Service Recap',
                     category: 'events'
                 });
@@ -599,7 +598,7 @@
             // Clear the loading message
             galleryGrid.innerHTML = '';
             
-            // Update button text to show "Church Service Recap"
+            // Update button text to show counts
             document.querySelector('[data-category="events"]').textContent = `Church Service Recap (${serviceImages.length})`;
             document.querySelector('[data-category="charity"]').textContent = `Charity Work (${charityImages.length})`;
             document.querySelector('[data-category="all"]').textContent = `All Activities (${allImages.length})`;
@@ -611,11 +610,14 @@
                 galleryItem.setAttribute('data-category', imageData.category);
                 
                 // Create the date from the filename
-                const dateFromFilename = imageData.filename.substring(4, 12);
-                const year = dateFromFilename.substring(0, 4);
-                const month = dateFromFilename.substring(4, 6);
-                const day = dateFromFilename.substring(6, 8);
-                const formattedDate = `${day}/${month}/${year}`;
+                let formattedDate = "04/11/2025"; // Default date from filename pattern
+                
+                // Try to extract date from filename
+                if (imageData.filename.includes('20250913')) {
+                    formattedDate = "13/09/2025"; // Charity work date
+                } else if (imageData.filename.includes('20251104')) {
+                    formattedDate = "04/11/2025"; // Church service date
+                }
                 
                 // Determine caption based on category
                 let caption = '';
@@ -678,13 +680,17 @@
                     
                     // Update counter based on selection
                     if (selectedCategory === 'all') {
-                        imageCounter.innerHTML = `Showing <strong>${galleryItems.length}</strong> images: <strong>${galleryItems.length}</strong> total images`;
+                        const charityCount = document.querySelectorAll('[data-category="charity"]').length;
+                        const eventsCount = document.querySelectorAll('[data-category="events"]').length;
+                        imageCounter.innerHTML = `Showing <strong>${visibleCount}</strong> images: <strong>${charityCount}</strong> Charity Work + <strong>${eventsCount}</strong> Church Service Recap`;
                     } else if (selectedCategory === 'charity') {
                         const charityCount = document.querySelectorAll('[data-category="charity"]').length;
                         imageCounter.innerHTML = `Showing <strong>${visibleCount}</strong> images: <strong>${charityCount}</strong> Charity Work images`;
                     } else if (selectedCategory === 'events') {
                         const eventsCount = document.querySelectorAll('[data-category="events"]').length;
                         imageCounter.innerHTML = `Showing <strong>${visibleCount}</strong> images: <strong>${eventsCount}</strong> Church Service Recap images`;
+                    } else if (selectedCategory === 'community') {
+                        imageCounter.innerHTML = `No images available for Community Outreach yet`;
                     }
                 });
             });
