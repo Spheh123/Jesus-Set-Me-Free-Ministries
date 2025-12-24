@@ -568,7 +568,7 @@
             for (let i = 1; i <= 119; i++) {
                 filenames.push({
                     filename: `${baseName}${i}.jpg`,
-                    folder: 'Church Service Recap',
+                    folder: 'Church Service Recap',  // FIXED: Added "Recap"
                     category: 'events'
                 });
             }
@@ -607,15 +607,27 @@
                 }
                 
                 // Determine caption based on category
-                let caption = imageData.category === 'charity' ? 'Charity Work' : 'Church Service';
+                let caption = '';
+                if (imageData.category === 'charity') {
+                    caption = 'Charity Work';
+                } else if (imageData.category === 'events') {
+                    caption = 'Church Service Recap';  // FIXED: Added "Recap"
+                }
                 
                 // Create image element with proper URL encoding for spaces
                 const img = document.createElement('img');
-                // ENCODE SPACES IN URL - This is likely the issue!
-                const encodedFolder = encodeURIComponent(imageData.folder);
-                const imagePath = `images/${encodedFolder}/${imageData.filename}`;
+                const imagePath = `images/${imageData.folder}/${imageData.filename}`;
                 img.src = imagePath;
                 img.alt = `${caption} - Jesus Set Me Free Ministries`;
+                
+                // Add error handling
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'image-error';
+                    errorDiv.textContent = `Path: ${imagePath}`;
+                    galleryItem.appendChild(errorDiv);
+                };
                 
                 // Create overlay
                 const overlay = document.createElement('div');
@@ -631,7 +643,7 @@
             });
             
             // Update image counter
-            imageCounter.innerHTML = `Total images loaded: <strong>${allImages.length}</strong> (${charityImages.length} Charity Work + ${serviceImages.length} Church Service Recap)`;
+            imageCounter.innerHTML = `Total images: <strong>${allImages.length}</strong> (${charityImages.length} Charity Work + ${serviceImages.length} Church Service Recap)`;
             
             // Reinitialize the filtering after images are loaded
             setTimeout(initializeFiltering, 100);
@@ -668,7 +680,7 @@
                     if (selectedCategory === 'all') {
                         const charityCount = document.querySelectorAll('[data-category="charity"]').length;
                         const eventsCount = document.querySelectorAll('[data-category="events"]').length;
-                        imageCounter.innerHTML = `Showing: <strong>${visibleCount}</strong> images (${charityCount} Charity + ${eventsCount} Service)`;
+                        imageCounter.innerHTML = `Showing: <strong>${visibleCount}</strong> images (${charityCount} Charity Work + ${eventsCount} Church Service Recap)`;
                     } else if (selectedCategory === 'charity') {
                         const charityCount = document.querySelectorAll('[data-category="charity"]').length;
                         imageCounter.innerHTML = `Showing: <strong>${visibleCount}</strong> Charity Work images`;
