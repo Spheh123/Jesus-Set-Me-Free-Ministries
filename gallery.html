@@ -245,6 +245,7 @@
             height: 250px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            background-color: #f0f0f0;
         }
         
         .gallery-item:hover {
@@ -288,24 +289,15 @@
             opacity: 0.9;
         }
         
-        .empty-gallery {
+        .image-error {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            padding: 3rem;
-            grid-column: 1 / -1;
-        }
-        
-        .empty-gallery i {
-            font-size: 3rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .loading-message {
-            text-align: center;
-            padding: 2rem;
-            grid-column: 1 / -1;
-            font-style: italic;
-            color: var(--primary);
+            color: var(--accent);
+            font-size: 0.9rem;
+            padding: 1rem;
         }
         
         .image-counter {
@@ -314,6 +306,15 @@
             font-size: 0.9rem;
             color: var(--primary);
             font-weight: 600;
+        }
+        
+        .path-info {
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            font-size: 0.9rem;
         }
         
         /* Footer */
@@ -440,16 +441,16 @@
             </button>
             
             <nav>
-    <ul id="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="apostle.html">Our Apostle</a></li>
-        <li><a href="experiences.html">Experiences</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="donate.html">Donate</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
+                <ul id="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="apostle.html">Our Apostle</a></li>
+                    <li><a href="experiences.html">Experiences</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -473,6 +474,12 @@
                 <p>Through your generous support, we're able to serve communities, spread the Gospel, and transform lives. This gallery showcases how your donations are being used to further God's kingdom.</p>
             </div>
             
+            <div class="path-info">
+                <p><strong>Current image paths being used:</strong></p>
+                <p>Charity: <code>images/Charity Work/IMG-20250913-WA0082.jpg</code></p>
+                <p>Service: <code>images/Church Service Recap/IMG-20251104-1.jpg</code></p>
+            </div>
+            
             <div class="gallery-categories">
                 <button class="category-btn active" data-category="all">All Activities</button>
                 <button class="category-btn" data-category="charity">Charity Work</button>
@@ -480,11 +487,11 @@
                 <button class="category-btn" data-category="community">Community Outreach</button>
             </div>
             
-            <div class="gallery-grid">
+            <div class="gallery-grid" id="galleryGrid">
                 <!-- Images will be loaded here by JavaScript -->
-                <div class="loading-message">
+                <div style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
                     <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading gallery images...</p>
+                    <p>Loading images...</p>
                 </div>
             </div>
             
@@ -514,7 +521,6 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="apostle.html">Our Apostle</a></li>
-                        
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="donate.html">Donate</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -587,7 +593,7 @@
         
         // Function to load all images
         function loadAllImages() {
-            const galleryGrid = document.querySelector('.gallery-grid');
+            const galleryGrid = document.getElementById('galleryGrid');
             const imageCounter = document.getElementById('imageCounter');
             
             // Get images from both folders
@@ -603,6 +609,9 @@
             document.querySelector('[data-category="charity"]').textContent = `Charity Work (${charityImages.length})`;
             document.querySelector('[data-category="all"]').textContent = `All Activities (${allImages.length})`;
             
+            let loadedImages = 0;
+            let failedImages = 0;
+            
             // Create gallery items for each image
             allImages.forEach((imageData, index) => {
                 const galleryItem = document.createElement('div');
@@ -610,45 +619,69 @@
                 galleryItem.setAttribute('data-category', imageData.category);
                 
                 // Create the date from the filename
-                let formattedDate = "04/11/2025"; // Default date from filename pattern
-                
-                // Try to extract date from filename
+                let formattedDate = "04/11/2025";
                 if (imageData.filename.includes('20250913')) {
-                    formattedDate = "13/09/2025"; // Charity work date
-                } else if (imageData.filename.includes('20251104')) {
-                    formattedDate = "04/11/2025"; // Church service date
+                    formattedDate = "13/09/2025";
                 }
                 
                 // Determine caption based on category
-                let caption = '';
-                if (imageData.category === 'charity') {
-                    caption = 'Charity Work';
-                } else if (imageData.category === 'events') {
-                    caption = 'Church Service';
-                }
+                let caption = imageData.category === 'charity' ? 'Charity Work' : 'Church Service';
                 
-                galleryItem.innerHTML = `
-                    <img src="images/${imageData.folder}/${imageData.filename}" 
-                         alt="${caption} - Jesus Set Me Free Ministries" 
-                         onerror="this.onerror=null; this.src='https://via.placeholder.com/300x250/1a4b8c/ffffff?text=Image+Loading';">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">${caption}</div>
-                        <div class="gallery-date">${formattedDate}</div>
-                    </div>
+                // Create image element
+                const img = document.createElement('img');
+                const imagePath = `images/${imageData.folder}/${imageData.filename}`;
+                img.src = imagePath;
+                img.alt = `${caption} - Jesus Set Me Free Ministries`;
+                
+                // Create overlay
+                const overlay = document.createElement('div');
+                overlay.className = 'gallery-overlay';
+                overlay.innerHTML = `
+                    <div class="gallery-caption">${caption}</div>
+                    <div class="gallery-date">${formattedDate}</div>
                 `;
                 
+                // Track loading success/failure
+                img.onload = function() {
+                    loadedImages++;
+                    updateCounter();
+                };
+                
+                img.onerror = function() {
+                    failedImages++;
+                    // Add error message
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'image-error';
+                    errorDiv.textContent = `Failed to load: ${imageData.filename}`;
+                    galleryItem.appendChild(errorDiv);
+                    updateCounter();
+                };
+                
+                galleryItem.appendChild(img);
+                galleryItem.appendChild(overlay);
                 galleryGrid.appendChild(galleryItem);
             });
             
-            // Update image counter
-            imageCounter.innerHTML = `
-                Showing <strong>${allImages.length}</strong> images total: 
-                <strong>${charityImages.length}</strong> Charity Work + 
-                <strong>${serviceImages.length}</strong> Church Service Recap
-            `;
+            function updateCounter() {
+                const totalProcessed = loadedImages + failedImages;
+                if (totalProcessed === allImages.length) {
+                    imageCounter.innerHTML = `
+                        <strong>${allImages.length}</strong> total images | 
+                        <span style="color: green">${loadedImages} loaded</span> | 
+                        <span style="color: red">${failedImages} failed</span>
+                    `;
+                    
+                    if (failedImages > 0) {
+                        imageCounter.innerHTML += `<br><small style="color: red">Check folder paths and filenames!</small>`;
+                    }
+                }
+            }
+            
+            // Initial counter
+            imageCounter.innerHTML = `Loading ${allImages.length} images...`;
             
             // Reinitialize the filtering after images are loaded
-            initializeFiltering();
+            setTimeout(initializeFiltering, 500);
         }
         
         // Gallery filtering functionality
@@ -682,25 +715,14 @@
                     if (selectedCategory === 'all') {
                         const charityCount = document.querySelectorAll('[data-category="charity"]').length;
                         const eventsCount = document.querySelectorAll('[data-category="events"]').length;
-                        imageCounter.innerHTML = `Showing <strong>${visibleCount}</strong> images: <strong>${charityCount}</strong> Charity Work + <strong>${eventsCount}</strong> Church Service Recap`;
-                    } else if (selectedCategory === 'charity') {
-                        const charityCount = document.querySelectorAll('[data-category="charity"]').length;
-                        imageCounter.innerHTML = `Showing <strong>${visibleCount}</strong> images: <strong>${charityCount}</strong> Charity Work images`;
-                    } else if (selectedCategory === 'events') {
-                        const eventsCount = document.querySelectorAll('[data-category="events"]').length;
-                        imageCounter.innerHTML = `Showing <strong>${visibleCount}</strong> images: <strong>${eventsCount}</strong> Church Service Recap images`;
-                    } else if (selectedCategory === 'community') {
-                        imageCounter.innerHTML = `No images available for Community Outreach yet`;
+                        imageCounter.innerHTML += `<br>Showing: ${charityCount} Charity + ${eventsCount} Service`;
                     }
                 });
             });
         }
         
         // Load images when page is ready
-        document.addEventListener('DOMContentLoaded', function() {
-            // Small delay to ensure DOM is fully loaded
-            setTimeout(loadAllImages, 100);
-        });
+        document.addEventListener('DOMContentLoaded', loadAllImages);
     </script>
 </body>
 </html>
