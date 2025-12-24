@@ -308,15 +308,6 @@
             font-weight: 600;
         }
         
-        .path-info {
-            text-align: center;
-            margin: 1rem 0;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-        
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -474,12 +465,6 @@
                 <p>Through your generous support, we're able to serve communities, spread the Gospel, and transform lives. This gallery showcases how your donations are being used to further God's kingdom.</p>
             </div>
             
-            <div class="path-info">
-                <p><strong>Current image paths being used:</strong></p>
-                <p>Charity: <code>images/Charity Work/IMG-20250913-WA0082.jpg</code></p>
-                <p>Service: <code>images/Church Service Recap/IMG-20251104-1.jpg</code></p>
-            </div>
-            
             <div class="gallery-categories">
                 <button class="category-btn active" data-category="all">All Activities</button>
                 <button class="category-btn" data-category="charity">Charity Work</button>
@@ -609,9 +594,6 @@
             document.querySelector('[data-category="charity"]').textContent = `Charity Work (${charityImages.length})`;
             document.querySelector('[data-category="all"]').textContent = `All Activities (${allImages.length})`;
             
-            let loadedImages = 0;
-            let failedImages = 0;
-            
             // Create gallery items for each image
             allImages.forEach((imageData, index) => {
                 const galleryItem = document.createElement('div');
@@ -627,9 +609,11 @@
                 // Determine caption based on category
                 let caption = imageData.category === 'charity' ? 'Charity Work' : 'Church Service';
                 
-                // Create image element
+                // Create image element with proper URL encoding for spaces
                 const img = document.createElement('img');
-                const imagePath = `images/${imageData.folder}/${imageData.filename}`;
+                // ENCODE SPACES IN URL - This is likely the issue!
+                const encodedFolder = encodeURIComponent(imageData.folder);
+                const imagePath = `images/${encodedFolder}/${imageData.filename}`;
                 img.src = imagePath;
                 img.alt = `${caption} - Jesus Set Me Free Ministries`;
                 
@@ -641,47 +625,16 @@
                     <div class="gallery-date">${formattedDate}</div>
                 `;
                 
-                // Track loading success/failure
-                img.onload = function() {
-                    loadedImages++;
-                    updateCounter();
-                };
-                
-                img.onerror = function() {
-                    failedImages++;
-                    // Add error message
-                    const errorDiv = document.createElement('div');
-                    errorDiv.className = 'image-error';
-                    errorDiv.textContent = `Failed to load: ${imageData.filename}`;
-                    galleryItem.appendChild(errorDiv);
-                    updateCounter();
-                };
-                
                 galleryItem.appendChild(img);
                 galleryItem.appendChild(overlay);
                 galleryGrid.appendChild(galleryItem);
             });
             
-            function updateCounter() {
-                const totalProcessed = loadedImages + failedImages;
-                if (totalProcessed === allImages.length) {
-                    imageCounter.innerHTML = `
-                        <strong>${allImages.length}</strong> total images | 
-                        <span style="color: green">${loadedImages} loaded</span> | 
-                        <span style="color: red">${failedImages} failed</span>
-                    `;
-                    
-                    if (failedImages > 0) {
-                        imageCounter.innerHTML += `<br><small style="color: red">Check folder paths and filenames!</small>`;
-                    }
-                }
-            }
-            
-            // Initial counter
-            imageCounter.innerHTML = `Loading ${allImages.length} images...`;
+            // Update image counter
+            imageCounter.innerHTML = `Total images loaded: <strong>${allImages.length}</strong> (${charityImages.length} Charity Work + ${serviceImages.length} Church Service Recap)`;
             
             // Reinitialize the filtering after images are loaded
-            setTimeout(initializeFiltering, 500);
+            setTimeout(initializeFiltering, 100);
         }
         
         // Gallery filtering functionality
@@ -715,7 +668,13 @@
                     if (selectedCategory === 'all') {
                         const charityCount = document.querySelectorAll('[data-category="charity"]').length;
                         const eventsCount = document.querySelectorAll('[data-category="events"]').length;
-                        imageCounter.innerHTML += `<br>Showing: ${charityCount} Charity + ${eventsCount} Service`;
+                        imageCounter.innerHTML = `Showing: <strong>${visibleCount}</strong> images (${charityCount} Charity + ${eventsCount} Service)`;
+                    } else if (selectedCategory === 'charity') {
+                        const charityCount = document.querySelectorAll('[data-category="charity"]').length;
+                        imageCounter.innerHTML = `Showing: <strong>${visibleCount}</strong> Charity Work images`;
+                    } else if (selectedCategory === 'events') {
+                        const eventsCount = document.querySelectorAll('[data-category="events"]').length;
+                        imageCounter.innerHTML = `Showing: <strong>${visibleCount}</strong> Church Service Recap images`;
                     }
                 });
             });
