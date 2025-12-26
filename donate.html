@@ -831,6 +831,19 @@
             margin-bottom: 2rem;
             color: #666;
         }
+
+        .currency-info {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #003087;
+            margin: 1rem 0;
+        }
+
+        .currency-info h4 {
+            color: #003087;
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -1014,7 +1027,7 @@
             <!-- PayPal Form -->
             <div id="paypalOption" class="payment-option">
                 <div class="payment-method-description">
-                    <p>Use PayPal for international donations in US Dollars (USD). Accepts PayPal accounts and all major credit/debit cards.</p>
+                    <p>Use PayPal for international donations. You can donate in your local currency - PayPal will automatically convert it to USD for our ministry. Accepts PayPal accounts and all major credit/debit cards worldwide.</p>
                 </div>
                 
                 <div class="paypal-form">
@@ -1035,12 +1048,29 @@
                                 <div class="amount-option" data-amount="250">$250</div>
                                 <div class="amount-option" data-amount="custom">Custom</div>
                             </div>
+                            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                                <i class="fas fa-info-circle"></i> Amounts shown in USD. You can donate in your local currency - PayPal will handle the conversion.
+                            </p>
                         </div>
 
                         <!-- Custom Amount Input -->
                         <div class="form-group custom-amount" style="display: none;">
-                            <label for="paypal_custom_amount" class="required">Enter Custom Amount (USD)</label>
-                            <input type="number" id="paypal_custom_amount" name="amount" min="1" step="0.01" placeholder="Enter amount in USD">
+                            <label for="paypal_custom_amount" class="required">Enter Custom Amount</label>
+                            <input type="number" id="paypal_custom_amount" name="amount" min="1" step="0.01" placeholder="Enter amount">
+                            <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                                <i class="fas fa-info-circle"></i> Enter amount in USD or your local currency. PayPal will convert it automatically.
+                            </p>
+                        </div>
+
+                        <!-- Currency Information -->
+                        <div class="currency-info">
+                            <h4><i class="fas fa-globe-americas"></i> Currency Information</h4>
+                            <p style="margin-bottom: 0.5rem; font-size: 0.95rem;">
+                                <strong>Our preferred currency:</strong> USD (US Dollars)
+                            </p>
+                            <p style="font-size: 0.9rem; color: #666;">
+                                <i class="fas fa-exchange-alt"></i> <strong>Donate in your currency:</strong> PayPal accepts payments in over 25 currencies and automatically converts to USD for us. You'll see the exact amount in your currency during checkout.
+                            </p>
                         </div>
 
                         <!-- Donation Type -->
@@ -1076,14 +1106,14 @@
 
                         <!-- Recurring Donation Option -->
                         <div class="form-group">
-                            <label>
-                                <input type="checkbox" name="cmd" value="_xclick-subscriptions">
-                                Make this a monthly recurring donation
+                            <label style="display: flex; align-items: center; gap: 10px;">
+                                <input type="checkbox" name="cmd" value="_xclick-subscriptions" style="width: auto;">
+                                <span>Make this a monthly recurring donation</span>
                             </label>
                         </div>
 
                         <button type="submit" class="btn btn-paypal">
-                            <i class="fab fa-paypal"></i> Donate via PayPal
+                            <i class="fab fa-paypal"></i> Continue to PayPal
                         </button>
 
                         <div class="secure-payment">
@@ -1095,6 +1125,22 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png" alt="MasterCard" style="height: 30px;">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa" style="height: 30px;">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/American_Express_logo_%282018%29.svg/1200px-American_Express_logo_%282018%29.svg.png" alt="American Express" style="height: 30px;">
+                        </div>
+
+                        <div style="text-align: center; margin-top: 1.5rem; padding: 1rem; background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #003087;">
+                            <h4 style="color: #003087; margin-bottom: 0.5rem;"><i class="fas fa-question-circle"></i> How Currency Conversion Works</h4>
+                            <div style="font-size: 0.9rem; color: #666; text-align: left;">
+                                <p><strong>1.</strong> You select an amount in USD on our site</p>
+                                <p><strong>2.</strong> When you click "Continue to PayPal", you'll go to PayPal's secure checkout</p>
+                                <p><strong>3.</strong> On PayPal, you can choose to pay in:</p>
+                                <ul style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
+                                    <li>Your local currency (PayPal converts to USD)</li>
+                                    <li>US Dollars (if you have USD in your account)</li>
+                                    <li>Credit/debit card in your currency</li>
+                                </ul>
+                                <p><strong>4.</strong> PayPal shows you the exact amount in your chosen currency before you pay</p>
+                                <p><strong>5.</strong> We receive the donation in USD after conversion</p>
+                            </div>
                         </div>
 
                         <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #666;">
@@ -1810,6 +1856,14 @@
                     alert('Please enter a valid donation amount');
                     return;
                 }
+            }
+            
+            // Optional: Show a confirmation message about currency conversion
+            if (confirm('You will be redirected to PayPal. You can choose to pay in your local currency - PayPal will handle the conversion to USD automatically. Continue?')) {
+                return true;
+            } else {
+                e.preventDefault();
+                return false;
             }
         });
 
