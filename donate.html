@@ -258,57 +258,10 @@
             width: 20px;
         }
 
-        /* Online Donations Section */
+        /* PayFast Online Donations Section */
         .online-donations {
             background-color: var(--light);
             padding: 5rem 0;
-        }
-
-        /* Payment Method Tabs */
-        .payment-tabs {
-            display: flex;
-            justify-content: center;
-            margin: 2rem 0 3rem;
-            border-bottom: 2px solid #eee;
-            flex-wrap: wrap;
-        }
-
-        .payment-tab {
-            padding: 1rem 2rem;
-            background: white;
-            border: none;
-            border-bottom: 3px solid transparent;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--dark);
-            transition: all 0.3s ease;
-            margin: 0 0.5rem;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .payment-tab:hover {
-            background-color: #f5f5f5;
-        }
-
-        .payment-tab.active {
-            border-bottom: 3px solid var(--secondary);
-            color: var(--primary);
-            background-color: #f8f9fa;
-        }
-
-        .payment-form {
-            display: none;
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .payment-form.active {
-            display: block;
         }
 
         .donation-amounts {
@@ -363,11 +316,59 @@
         }
 
         .payfast-form {
-            /* Specific styles for PayFast form */
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .paypal-form {
-            /* Specific styles for PayPal form */
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            max-width: 500px;
+            margin: 2rem auto 0;
+            border-top: 4px solid #003087;
+        }
+
+        .payment-method-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .payment-tab {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark);
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+        .payment-tab:hover {
+            color: var(--primary);
+        }
+
+        .payment-tab.active {
+            border-bottom: 3px solid var(--secondary);
+            color: var(--primary);
+        }
+
+        .payment-option {
+            display: none;
+        }
+
+        .payment-option.active {
+            display: block;
         }
 
         .form-group {
@@ -824,6 +825,12 @@
             color: #0a9552;
             margin-right: 0.5rem;
         }
+
+        .payment-method-description {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -917,173 +924,185 @@
             </div>
 
             <!-- Payment Method Tabs -->
-            <div class="payment-tabs">
+            <div class="payment-method-tabs">
                 <button class="payment-tab active" data-payment="payfast">PayFast (South Africa)</button>
                 <button class="payment-tab" data-payment="paypal">PayPal (International)</button>
             </div>
 
             <!-- PayFast Form -->
-            <div id="payfastForm" class="payment-form active">
-                <form action="https://www.payfast.co.za/eng/process" method="post">
-                    <!-- PayFast Required Fields -->
-                    <input type="hidden" name="merchant_id" value="31420263">
-                    <input type="hidden" name="merchant_key" value="buurwx1golnsv">
-                    <input type="hidden" name="return_url" value="https://yourwebsite.com/donate.html?payment_status=success">
-                    <input type="hidden" name="cancel_url" value="https://yourwebsite.com/donate.html?payment_status=cancelled">
-                    <input type="hidden" name="notify_url" value="https://yourwebsite.com/notify.php">
-                    
-                    <!-- Donation Amount Selection -->
-                    <div class="form-group">
-                        <label class="required">Select Donation Amount (ZAR)</label>
-                        <div class="donation-amounts">
-                            <div class="amount-option" data-amount="50">R50</div>
-                            <div class="amount-option" data-amount="100">R100</div>
-                            <div class="amount-option" data-amount="200">R200</div>
-                            <div class="amount-option" data-amount="500">R500</div>
-                            <div class="amount-option" data-amount="1000">R1000</div>
-                            <div class="amount-option" data-amount="custom">Custom</div>
+            <div id="payfastOption" class="payment-option active">
+                <div class="payment-method-description">
+                    <p>Use PayFast for secure South African payments in Rands (ZAR). Accepts credit/debit cards, EFT, and mobile payments.</p>
+                </div>
+                
+                <div class="payfast-form">
+                    <form action="https://www.payfast.co.za/eng/process" method="post">
+                        <!-- PayFast Required Fields -->
+                        <input type="hidden" name="merchant_id" value="31420263">
+                        <input type="hidden" name="merchant_key" value="buurwx1golnsv">
+                        <input type="hidden" name="return_url" value="https://yourwebsite.com/donate.html?payment_status=success">
+                        <input type="hidden" name="cancel_url" value="https://yourwebsite.com/donate.html?payment_status=cancelled">
+                        <input type="hidden" name="notify_url" value="https://yourwebsite.com/notify.php">
+                        
+                        <!-- Donation Amount Selection -->
+                        <div class="form-group">
+                            <label class="required">Select Donation Amount (ZAR)</label>
+                            <div class="donation-amounts">
+                                <div class="amount-option" data-amount="50">R50</div>
+                                <div class="amount-option" data-amount="100">R100</div>
+                                <div class="amount-option" data-amount="200">R200</div>
+                                <div class="amount-option" data-amount="500">R500</div>
+                                <div class="amount-option" data-amount="1000">R1000</div>
+                                <div class="amount-option" data-amount="custom">Custom</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Custom Amount Input -->
-                    <div class="form-group custom-amount" style="display: none;">
-                        <label for="payfast_custom_amount" class="required">Enter Custom Amount (ZAR)</label>
-                        <input type="number" id="payfast_custom_amount" name="custom_amount" min="1" placeholder="Enter amount in Rands">
-                    </div>
+                        <!-- Custom Amount Input -->
+                        <div class="form-group custom-amount" style="display: none;">
+                            <label for="payfast_custom_amount" class="required">Enter Custom Amount (ZAR)</label>
+                            <input type="number" id="payfast_custom_amount" name="custom_amount" min="1" placeholder="Enter amount in Rands">
+                        </div>
 
-                    <!-- Hidden amount field for PayFast -->
-                    <input type="hidden" name="amount" id="payfast_amount" value="100" required>
+                        <!-- Hidden amount field for PayFast -->
+                        <input type="hidden" name="amount" id="payfast_amount" value="100" required>
 
-                    <!-- Donor Information -->
-                    <div class="form-group">
-                        <label for="payfast_donor_name" class="required">Your Name</label>
-                        <input type="text" id="payfast_donor_name" name="name_first" placeholder="Enter your full name" required>
-                    </div>
+                        <!-- Donor Information -->
+                        <div class="form-group">
+                            <label for="payfast_donor_name" class="required">Your Name</label>
+                            <input type="text" id="payfast_donor_name" name="name_first" placeholder="Enter your full name" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="payfast_donor_email" class="required">Email Address</label>
-                        <input type="email" id="payfast_donor_email" name="email_address" placeholder="Enter your email" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="payfast_donor_email" class="required">Email Address</label>
+                            <input type="email" id="payfast_donor_email" name="email_address" placeholder="Enter your email" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="payfast_donation_type">Donation Type (Optional)</label>
-                        <select id="payfast_donation_type" name="item_name">
-                            <option value="General Donation">General Donation</option>
-                            <option value="Tithes">Tithes</option>
-                            <option value="Offering">Offering</option>
-                            <option value="Missions Support">Missions Support</option>
-                            <option value="Building Fund">Building Fund</option>
-                            <option value="Outreach Program">Outreach Program</option>
-                        </select>
-                    </div>
+                        <div class="form-group">
+                            <label for="payfast_donation_type">Donation Type (Optional)</label>
+                            <select id="payfast_donation_type" name="item_name">
+                                <option value="General Donation">General Donation</option>
+                                <option value="Tithes">Tithes</option>
+                                <option value="Offering">Offering</option>
+                                <option value="Missions Support">Missions Support</option>
+                                <option value="Building Fund">Building Fund</option>
+                                <option value="Outreach Program">Outreach Program</option>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="payfast_donor_message">Message (Optional)</label>
-                        <textarea id="payfast_donor_message" name="custom_str1" placeholder="Any message or prayer request..."></textarea>
-                    </div>
+                        <div class="form-group">
+                            <label for="payfast_donor_message">Message (Optional)</label>
+                            <textarea id="payfast_donor_message" name="custom_str1" placeholder="Any message or prayer request..."></textarea>
+                        </div>
 
-                    <button type="submit" class="btn btn-payfast">
-                        <i class="fas fa-lock"></i> Donate Securely via PayFast
-                    </button>
+                        <button type="submit" class="btn btn-payfast">
+                            <i class="fas fa-lock"></i> Donate Securely via PayFast
+                        </button>
 
-                    <div class="secure-payment">
-                        <i class="fas fa-shield-alt"></i> 100% Secure Payment Processing
-                    </div>
+                        <div class="secure-payment">
+                            <i class="fas fa-shield-alt"></i> 100% Secure Payment Processing
+                        </div>
 
-                    <div class="payment-logos">
-                        <img src="https://www.payfast.co.za/assets/images/logos/logo_colour.png" alt="PayFast" class="payment-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png" alt="MasterCard" style="height: 30px;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa" style="height: 30px;">
-                    </div>
-                </form>
+                        <div class="payment-logos">
+                            <img src="https://www.payfast.co.za/assets/images/logos/logo_colour.png" alt="PayFast" class="payment-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png" alt="MasterCard" style="height: 30px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa" style="height: 30px;">
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <!-- PayPal Form -->
-            <div id="paypalForm" class="payment-form">
-                <form action="https://www.paypal.com/donate" method="post" target="_blank">
-                    <!-- PayPal Required Fields -->
-                    <input type="hidden" name="business" value="jsmfmpartners@gmail.com">
-                    <input type="hidden" name="no_recurring" value="0">
-                    <input type="hidden" name="currency_code" value="USD">
-                    
-                    <!-- Donation Amount Selection -->
-                    <div class="form-group">
-                        <label class="required">Select Donation Amount (USD)</label>
-                        <div class="donation-amounts">
-                            <div class="amount-option" data-amount="10">$10</div>
-                            <div class="amount-option" data-amount="25">$25</div>
-                            <div class="amount-option" data-amount="50">$50</div>
-                            <div class="amount-option" data-amount="100">$100</div>
-                            <div class="amount-option" data-amount="250">$250</div>
-                            <div class="amount-option" data-amount="custom">Custom</div>
+            <div id="paypalOption" class="payment-option">
+                <div class="payment-method-description">
+                    <p>Use PayPal for international donations in US Dollars (USD). Accepts PayPal accounts and all major credit/debit cards.</p>
+                </div>
+                
+                <div class="paypal-form">
+                    <form action="https://www.paypal.com/donate" method="post" target="_blank">
+                        <!-- PayPal Required Fields -->
+                        <input type="hidden" name="business" value="jsmfmpartners@gmail.com">
+                        <input type="hidden" name="no_recurring" value="0">
+                        <input type="hidden" name="currency_code" value="USD">
+                        
+                        <!-- Donation Amount Selection -->
+                        <div class="form-group">
+                            <label class="required">Select Donation Amount (USD)</label>
+                            <div class="donation-amounts">
+                                <div class="amount-option" data-amount="10">$10</div>
+                                <div class="amount-option" data-amount="25">$25</div>
+                                <div class="amount-option" data-amount="50">$50</div>
+                                <div class="amount-option" data-amount="100">$100</div>
+                                <div class="amount-option" data-amount="250">$250</div>
+                                <div class="amount-option" data-amount="custom">Custom</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Custom Amount Input -->
-                    <div class="form-group custom-amount" style="display: none;">
-                        <label for="paypal_custom_amount" class="required">Enter Custom Amount (USD)</label>
-                        <input type="number" id="paypal_custom_amount" name="amount" min="1" step="0.01" placeholder="Enter amount in USD">
-                    </div>
+                        <!-- Custom Amount Input -->
+                        <div class="form-group custom-amount" style="display: none;">
+                            <label for="paypal_custom_amount" class="required">Enter Custom Amount (USD)</label>
+                            <input type="number" id="paypal_custom_amount" name="amount" min="1" step="0.01" placeholder="Enter amount in USD">
+                        </div>
 
-                    <!-- Donation Type -->
-                    <div class="form-group">
-                        <label for="paypal_donation_type">Donation Type (Optional)</label>
-                        <select id="paypal_donation_type" name="item_name">
-                            <option value="General Donation">General Donation</option>
-                            <option value="Tithes">Tithes</option>
-                            <option value="Offering">Offering</option>
-                            <option value="Missions Support">Missions Support</option>
-                            <option value="Building Fund">Building Fund</option>
-                            <option value="Outreach Program">Outreach Program</option>
-                            <option value="Partner Contribution">Partner Contribution</option>
-                            <option value="Seed Offering">Seed Offering</option>
-                        </select>
-                    </div>
+                        <!-- Donation Type -->
+                        <div class="form-group">
+                            <label for="paypal_donation_type">Donation Type (Optional)</label>
+                            <select id="paypal_donation_type" name="item_name">
+                                <option value="General Donation">General Donation</option>
+                                <option value="Tithes">Tithes</option>
+                                <option value="Offering">Offering</option>
+                                <option value="Missions Support">Missions Support</option>
+                                <option value="Building Fund">Building Fund</option>
+                                <option value="Outreach Program">Outreach Program</option>
+                                <option value="Partner Contribution">Partner Contribution</option>
+                                <option value="Seed Offering">Seed Offering</option>
+                            </select>
+                        </div>
 
-                    <!-- Donor Information (Optional for PayPal) -->
-                    <div class="form-group">
-                        <label for="paypal_donor_name">Your Name (Optional)</label>
-                        <input type="text" id="paypal_donor_name" name="first_name" placeholder="Enter your name (optional)">
-                    </div>
+                        <!-- Donor Information (Optional for PayPal) -->
+                        <div class="form-group">
+                            <label for="paypal_donor_name">Your Name (Optional)</label>
+                            <input type="text" id="paypal_donor_name" name="first_name" placeholder="Enter your name (optional)">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="paypal_donor_email">Email Address (Optional)</label>
-                        <input type="email" id="paypal_donor_email" name="email" placeholder="Enter your email (optional)">
-                    </div>
+                        <div class="form-group">
+                            <label for="paypal_donor_email">Email Address (Optional)</label>
+                            <input type="email" id="paypal_donor_email" name="email" placeholder="Enter your email (optional)">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="paypal_donor_message">Message or Prayer Request (Optional)</label>
-                        <textarea id="paypal_donor_message" name="item_number" placeholder="Any message or prayer request..."></textarea>
-                    </div>
+                        <div class="form-group">
+                            <label for="paypal_donor_message">Message or Prayer Request (Optional)</label>
+                            <textarea id="paypal_donor_message" name="item_number" placeholder="Any message or prayer request..."></textarea>
+                        </div>
 
-                    <!-- Recurring Donation Option -->
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" name="cmd" value="_xclick-subscriptions">
-                            Make this a monthly recurring donation
-                        </label>
-                    </div>
+                        <!-- Recurring Donation Option -->
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" name="cmd" value="_xclick-subscriptions">
+                                Make this a monthly recurring donation
+                            </label>
+                        </div>
 
-                    <button type="submit" class="btn btn-paypal">
-                        <i class="fab fa-paypal"></i> Donate via PayPal
-                    </button>
+                        <button type="submit" class="btn btn-paypal">
+                            <i class="fab fa-paypal"></i> Donate via PayPal
+                        </button>
 
-                    <div class="secure-payment">
-                        <i class="fas fa-shield-alt"></i> Secure PayPal Payment Processing
-                    </div>
+                        <div class="secure-payment">
+                            <i class="fas fa-shield-alt"></i> Secure PayPal Payment Processing
+                        </div>
 
-                    <div class="payment-logos">
-                        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal" class="payment-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png" alt="MasterCard" style="height: 30px;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa" style="height: 30px;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/American_Express_logo_%282018%29.svg/1200px-American_Express_logo_%282018%29.svg.png" alt="American Express" style="height: 30px;">
-                    </div>
+                        <div class="payment-logos">
+                            <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal" class="payment-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png" alt="MasterCard" style="height: 30px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa" style="height: 30px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/American_Express_logo_%282018%29.svg/1200px-American_Express_logo_%282018%29.svg.png" alt="American Express" style="height: 30px;">
+                        </div>
 
-                    <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #666;">
-                        <p><strong>Note:</strong> Donations will be sent to our business PayPal account: <strong>jsmfmpartners@gmail.com</strong></p>
-                        <p>You can donate from anywhere in the world using PayPal.</p>
-                    </div>
-                </form>
+                        <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                            <p><strong>Note:</strong> Donations will be sent to our business PayPal account: <strong>jsmfmpartners@gmail.com</strong></p>
+                            <p>You can donate from anywhere in the world using PayPal.</p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -1624,14 +1643,14 @@
                 // Add active class to clicked tab
                 this.classList.add('active');
                 
-                // Hide all payment forms
-                document.querySelectorAll('.payment-form').forEach(form => {
-                    form.classList.remove('active');
+                // Hide all payment options
+                document.querySelectorAll('.payment-option').forEach(option => {
+                    option.classList.remove('active');
                 });
                 
-                // Show the selected payment form
+                // Show the selected payment option
                 const paymentMethod = this.getAttribute('data-payment');
-                document.getElementById(paymentMethod + 'Form').classList.add('active');
+                document.getElementById(paymentMethod + 'Option').classList.add('active');
             });
         });
         
@@ -1692,10 +1711,10 @@
         }
 
         // PayFast Donation Amount Selection
-        document.querySelectorAll('#payfastForm .amount-option').forEach(option => {
+        document.querySelectorAll('#payfastOption .amount-option').forEach(option => {
             option.addEventListener('click', function() {
                 // Remove selected class from all options in PayFast form
-                document.querySelectorAll('#payfastForm .amount-option').forEach(opt => {
+                document.querySelectorAll('#payfastOption .amount-option').forEach(opt => {
                     opt.classList.remove('selected');
                 });
                 
@@ -1703,7 +1722,7 @@
                 this.classList.add('selected');
                 
                 const amount = this.getAttribute('data-amount');
-                const customAmountGroup = document.querySelector('#payfastForm .custom-amount');
+                const customAmountGroup = document.querySelector('#payfastOption .custom-amount');
                 
                 if (amount === 'custom') {
                     customAmountGroup.style.display = 'block';
@@ -1716,10 +1735,10 @@
         });
 
         // PayPal Donation Amount Selection
-        document.querySelectorAll('#paypalForm .amount-option').forEach(option => {
+        document.querySelectorAll('#paypalOption .amount-option').forEach(option => {
             option.addEventListener('click', function() {
                 // Remove selected class from all options in PayPal form
-                document.querySelectorAll('#paypalForm .amount-option').forEach(opt => {
+                document.querySelectorAll('#paypalOption .amount-option').forEach(opt => {
                     opt.classList.remove('selected');
                 });
                 
@@ -1727,7 +1746,7 @@
                 this.classList.add('selected');
                 
                 const amount = this.getAttribute('data-amount');
-                const customAmountGroup = document.querySelector('#paypalForm .custom-amount');
+                const customAmountGroup = document.querySelector('#paypalOption .custom-amount');
                 
                 if (amount === 'custom') {
                     customAmountGroup.style.display = 'block';
@@ -1735,7 +1754,7 @@
                 } else {
                     customAmountGroup.style.display = 'none';
                     // For PayPal, we need to update the amount field
-                    const amountInput = document.querySelector('#paypalForm input[name="amount"]');
+                    const amountInput = document.querySelector('#paypalOption input[name="amount"]');
                     if (amountInput) {
                         amountInput.value = amount;
                     }
@@ -1750,15 +1769,15 @@
 
         // Update PayPal amount when custom amount is entered
         document.getElementById('paypal_custom_amount')?.addEventListener('input', function() {
-            const amountInput = document.querySelector('#paypalForm input[name="amount"]');
+            const amountInput = document.querySelector('#paypalOption input[name="amount"]');
             if (amountInput) {
                 amountInput.value = this.value;
             }
         });
 
         // Validate PayFast form
-        document.querySelector('#payfastForm form')?.addEventListener('submit', function(e) {
-            const selectedOption = document.querySelector('#payfastForm .amount-option.selected');
+        document.querySelector('#payfastOption form')?.addEventListener('submit', function(e) {
+            const selectedOption = document.querySelector('#payfastOption .amount-option.selected');
             if (!selectedOption) {
                 e.preventDefault();
                 alert('Please select a donation amount');
@@ -1776,8 +1795,8 @@
         });
 
         // Validate PayPal form
-        document.querySelector('#paypalForm form')?.addEventListener('submit', function(e) {
-            const selectedOption = document.querySelector('#paypalForm .amount-option.selected');
+        document.querySelector('#paypalOption form')?.addEventListener('submit', function(e) {
+            const selectedOption = document.querySelector('#paypalOption .amount-option.selected');
             if (!selectedOption) {
                 e.preventDefault();
                 alert('Please select a donation amount');
@@ -1800,13 +1819,13 @@
             toggleMedicationDetails();
             
             // Set default selected amount for PayFast
-            const payfastDefault = document.querySelector('#payfastForm .amount-option[data-amount="100"]');
+            const payfastDefault = document.querySelector('#payfastOption .amount-option[data-amount="100"]');
             if (payfastDefault) {
                 payfastDefault.classList.add('selected');
             }
             
             // Set default selected amount for PayPal
-            const paypalDefault = document.querySelector('#paypalForm .amount-option[data-amount="25"]');
+            const paypalDefault = document.querySelector('#paypalOption .amount-option[data-amount="25"]');
             if (paypalDefault) {
                 paypalDefault.classList.add('selected');
             }
