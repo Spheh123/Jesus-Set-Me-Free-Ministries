@@ -188,6 +188,72 @@
             color: var(--primary);
         }
 
+        /* NEW: Bible Study Section */
+        .bible-study {
+            background: linear-gradient(135deg, #8e1c1c 0%, #b33939 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .bible-study .section-title {
+            color: white;
+        }
+        
+        .bible-study-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .bible-study-poster {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .bible-study-poster:hover {
+            transform: scale(1.02);
+        }
+        
+        .bible-study-details h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .bible-study-details ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .bible-study-details ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .bible-study-details ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .btn-register {
+            background-color: white;
+            color: var(--accent);
+            margin-top: 1rem;
+        }
+        
+        .btn-register:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
         /* Testimonies Quick Access Section */
         .testimonies-access {
             background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
@@ -567,6 +633,10 @@
             .about-content {
                 grid-template-columns: 1fr;
             }
+            
+            .bible-study-content {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -672,6 +742,38 @@
             <div>
                 <a href="donate.html" class="btn">Support Our Mission</a>
                 <a href="contact.html" class="btn btn-outline">Join Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Bible Study Section -->
+    <section class="bible-study" id="bible-study">
+        <div class="container">
+            <h2 class="section-title">2026 Online Bible Study</h2>
+            <div class="bible-study-content">
+                <div>
+                    <img src="images/online-bible-study-2026.jpg" alt="2026 Online Bible Study" class="bible-study-poster">
+                </div>
+                <div class="bible-study-details">
+                    <h3>Join Our Online Bible Study Program</h3>
+                    <p>Deepen your understanding of God's Word through our comprehensive online Bible study program starting in 2026. This is a transformative journey through Scripture designed for all believers.</p>
+                    
+                    <ul>
+                        <li><strong>Weekly Sessions:</strong> Live interactive Bible study sessions</li>
+                        <li><strong>Expert Teaching:</strong> Led by Apostle Richard and guest teachers</li>
+                        <li><strong>Flexible Schedule:</strong> Recorded sessions available 24/7</li>
+                        <li><strong>Community:</strong> Connect with believers worldwide</li>
+                        <li><strong>Free Registration:</strong> Open to all who desire to grow in faith</li>
+                    </ul>
+                    
+                    <p>Don't miss this opportunity to grow spiritually and connect with a global community of believers studying God's Word together.</p>
+                    
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSel4MEKo4yx8gbljBN8m2e0LnbeWGeytFMNGo8O0gbYBynw7Q/viewform" 
+                       target="_blank" 
+                       class="btn btn-register">
+                        <i class="fas fa-user-plus"></i> Register Now for 2026 Bible Study
+                    </a>
+                </div>
             </div>
         </div>
     </section>
