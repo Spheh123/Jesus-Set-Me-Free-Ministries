@@ -200,22 +200,9 @@
         }
         
         .bible-study-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            margin-top: 2rem;
-        }
-        
-        .bible-study-poster {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-        
-        .bible-study-poster:hover {
-            transform: scale(1.02);
+            max-width: 850px;
+            margin: 2rem auto 0;
+            text-align: left;
         }
         
         .bible-study-details h3 {
@@ -634,9 +621,6 @@
                 grid-template-columns: 1fr;
             }
             
-            .bible-study-content {
-                grid-template-columns: 1fr;
-            }
         }
         
         @media (max-width: 768px) {
@@ -751,9 +735,6 @@
         <div class="container">
             <h2 class="section-title">2026 Online Bible Study</h2>
             <div class="bible-study-content">
-                <div>
-                    <img src="images/bible-study-poster.svg" alt="2026 Online Bible Study" class="bible-study-poster">
-                </div>
                 <div class="bible-study-details">
                     <h3>Join Our 2026 Online Bible Study</h3>
                     <p>We are excited to announce our Online Bible Study program for 2026! This is an opportunity to grow deeper in God's Word and strengthen your faith through systematic Bible study.</p>
