@@ -235,6 +235,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
         .donate-option h3 i {
@@ -256,6 +257,60 @@
         .bank-details i {
             color: var(--secondary);
             width: 20px;
+        }
+
+        .method-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 64px;
+            min-height: 38px;
+            padding: 0.4rem 0.7rem;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+        }
+
+        .method-logo.small {
+            min-width: 48px;
+            min-height: 28px;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.68rem;
+            margin-right: 0.3rem;
+        }
+
+        .standard-bank-logo {
+            background: #005bac;
+        }
+
+        .capitec-logo {
+            background: #003d79;
+        }
+
+        .fnb-logo {
+            background: #009999;
+        }
+
+        .payfast-logo {
+            background: #ed6b21;
+        }
+
+        .mukuru-logo {
+            background: #f58220;
+        }
+
+        .paypal-logo {
+            background: #003087;
+        }
+
+        .mobile-logo {
+            background: #0a9552;
         }
 
         /* PayFast Online Donations Section */
@@ -342,6 +397,10 @@
         }
 
         .payment-tab {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             padding: 1rem 2rem;
             background: none;
             border: none;
@@ -545,6 +604,14 @@
             font-size: 3rem;
             color: #0a9552;
             margin-bottom: 1rem;
+        }
+
+        .success-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
         }
 
         .payment-message {
@@ -938,8 +1005,8 @@
 
             <!-- Payment Method Tabs -->
             <div class="payment-method-tabs">
-                <button class="payment-tab active" data-payment="payfast">PayFast (South Africa)</button>
-                <button class="payment-tab" data-payment="paypal">PayPal (International)</button>
+                <button class="payment-tab active" data-payment="payfast"><span class="method-logo small payfast-logo">PF</span> PayFast (South Africa)</button>
+                <button class="payment-tab" data-payment="paypal"><span class="method-logo small paypal-logo">PP</span> PayPal (International)</button>
             </div>
 
             <!-- PayFast Form -->
@@ -1160,7 +1227,7 @@
             
             <div class="donate-options">
                 <div class="donate-option">
-                    <h3><i class="fas fa-building"></i> STANDARD BANK</h3>
+                    <h3><span class="method-logo standard-bank-logo">STANDARD<br>BANK</span> STANDARD BANK</h3>
                     <div class="bank-details">
                         <p><i class="fas fa-user"></i> Account Holder: JESUS SET ME FREE MINISTRIES</p>
                         <p><i class="fas fa-hashtag"></i> Acc No: 10257447855</p>
@@ -1171,7 +1238,7 @@
                 </div>
                 
                 <div class="donate-option">
-                    <h3><i class="fas fa-university"></i> Capitec Bank</h3>
+                    <h3><span class="method-logo capitec-logo">CAPITEC</span> Capitec Bank</h3>
                     <div class="bank-details">
                         <p><i class="fas fa-hashtag"></i> Acc Number: 1343510307</p>
                         <p><i class="fas fa-code-branch"></i> Branch Code: 470010</p>
@@ -1180,7 +1247,7 @@
                 </div>
 
                 <div class="donate-option">
-                    <h3><i class="fas fa-building"></i> FNB</h3>
+                    <h3><span class="method-logo fnb-logo">FNB</span> FNB</h3>
                     <div class="bank-details">
                         <p><i class="fas fa-hashtag"></i> Acc Number: 63024230805</p>
                         <p><i class="fas fa-globe"></i> Swift Code: FIRNZAJJ</p>
@@ -1188,7 +1255,7 @@
                 </div>
 
                 <div class="donate-option">
-                    <h3><i class="fas fa-globe"></i> Mukuru Money Bank</h3>
+                    <h3><span class="method-logo mukuru-logo">MUKURU</span> Mukuru Money Bank</h3>
                     <div class="bank-details">
                         <p><i class="fas fa-code-branch"></i> Access Bank Branch: 410506</p>
                         <p><i class="fas fa-hashtag"></i> ACC Number: 51703135966</p>
@@ -1197,7 +1264,7 @@
                 </div>
                 
                 <div class="donate-option">
-                    <h3><i class="fab fa-paypal"></i> PayPal</h3>
+                    <h3><span class="method-logo paypal-logo">PayPal</span> PayPal</h3>
                     <div class="bank-details">
                         <p><i class="fas fa-envelope"></i> jsmfmpartners@gmail.com</p>
                         <p style="color: var(--accent); font-weight: bold;">(Business Account for Donations)</p>
@@ -1205,7 +1272,7 @@
                 </div>
 
                 <div class="donate-option">
-                    <h3><i class="fas fa-mobile-alt"></i> Mobile Banking</h3>
+                    <h3><span class="method-logo mobile-logo"><i class="fas fa-mobile-alt"></i></span> Mobile Banking</h3>
                     <p>You can also donate via mobile banking:</p>
                     <div class="bank-details">
                         <p><i class="fas fa-phone"></i> <strong>Phone Numbers:</strong></p>
@@ -1310,31 +1377,32 @@
                         
                         <div class="form-bank-details">
                             <h4>Banking Details for Partnership Contributions</h4>
-                            <p><i class="fas fa-university"></i> <strong>Capitec Bank</strong></p>
-                            <p><i class="fas fa-hashtag"></i> Acc Number: 1343510307</p>
-                            <p><i class="fas fa-code-branch"></i> Branch Code: 470010</p>
-                            
-                            <p><i class="fas fa-building"></i> <strong>FNB</strong></p>
-                            <p><i class="fas fa-hashtag"></i> Acc Number: 63024230805</p>
-
-                            <p><i class="fas fa-building"></i> <strong>STANDARD BANK</strong></p>
+                            <p><span class="method-logo small standard-bank-logo">STD</span> <strong>STANDARD BANK</strong></p>
                             <p><i class="fas fa-user"></i> Account Holder: JESUS SET ME FREE MINISTRIES</p>
                             <p><i class="fas fa-hashtag"></i> Acc No: 10257447855</p>
                             <p><i class="fas fa-code-branch"></i> Branch Code: 2442</p>
                             <p><i class="fas fa-wallet"></i> Account Type: CURRENT</p>
                             <p><i class="fas fa-globe"></i> Swift Code: SBZAZAJJ</p>
+
+                            <p><span class="method-logo small capitec-logo">CAP</span> <strong>Capitec Bank</strong></p>
+                            <p><i class="fas fa-hashtag"></i> Acc Number: 1343510307</p>
+                            <p><i class="fas fa-code-branch"></i> Branch Code: 470010</p>
                             
-                            <p><i class="fas fa-building"></i> <strong>Mukuru Money Bank</strong></p>
+                            <p><span class="method-logo small fnb-logo">FNB</span> <strong>FNB</strong></p>
+                            <p><i class="fas fa-hashtag"></i> Acc Number: 63024230805</p>
+
+                            <p><span class="method-logo small mukuru-logo">MUK</span> <strong>Mukuru Money Bank</strong></p>
                             <p><i class="fas fa-code-branch"></i> Access Bank Branch: 410506</p>
                             <p><i class="fas fa-hashtag"></i> ACC Number: 51703135966</p>
                             <p><i class="fas fa-user"></i> Apostle Richard: +27787952184</p>
                             
-                            <p><i class="fab fa-paypal"></i> <strong>PayPal</strong></p>
+                            <p><span class="method-logo small paypal-logo">PP</span> <strong>PayPal</strong></p>
                             <p><i class="fas fa-envelope"></i> jsmfmpartners@gmail.com</p>
                         </div>
                         
                         <button type="submit" class="btn btn-center">Submit Partnership Application</button>
                     </form>
+                    <iframe name="partnershipSubmitFrame" title="Partnership form submission" style="display: none;"></iframe>
                     
                     <div class="loading" id="partnershipLoading">
                         <div class="loading-spinner"></div>
@@ -1344,10 +1412,14 @@
                     <div id="partnershipSuccess" class="success-message">
                         <i class="fas fa-check-circle"></i>
                         <h3>Thank You for Partnering with Jesus Set Me Free Ministries!</h3>
-                        <p>Your partnership code is:</p>
+                        <p>Your partnership number is:</p>
                         <div class="partner-code-display" id="partnerCode"></div>
                         <p>Please keep this code safe and remember it for future reference.</p>
                         <p>We will be in touch shortly to welcome you officially as a ministry partner.</p>
+                        <div class="success-actions">
+                            <a href="index.html" class="btn">Go Back to the Site</a>
+                            <button type="button" class="btn" id="newPartnershipBtn" style="background: var(--primary);">Submit Another Form</button>
+                        </div>
                     </div>
                 </div>
                 
@@ -1907,8 +1979,19 @@
         
         // Partnership form submission
         document.getElementById('partnershipFormSubmit').addEventListener('submit', function(e) {
-            // Show loading indicator
-            document.getElementById('partnershipLoading').style.display = 'block';
+            e.preventDefault();
+
+            const form = this;
+            const loading = document.getElementById('partnershipLoading');
+            const success = document.getElementById('partnershipSuccess');
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            loading.style.display = 'block';
+            success.style.display = 'none';
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+            }
             
             // Generate sequential partnership code starting from 202501
             let partnerCount = localStorage.getItem('partnerCount') || 0;
@@ -1918,28 +2001,52 @@
             const partnerCode = 202500 + partnerCount;
             
             // Add the partnership code as a hidden field to the form
-            const codeInput = document.createElement('input');
-            codeInput.type = 'hidden';
-            codeInput.name = 'Partnership Code';
+            let codeInput = form.querySelector('input[name="Partnership Code"]');
+            if (!codeInput) {
+                codeInput = document.createElement('input');
+                codeInput.type = 'hidden';
+                codeInput.name = 'Partnership Code';
+                form.appendChild(codeInput);
+            }
             codeInput.value = partnerCode;
-            this.appendChild(codeInput);
             
             // Update the subject line with the partnership code
-            this.querySelector('input[name="_subject"]').value = 'New Partnership Registration - Code: ' + partnerCode;
+            form.querySelector('input[name="_subject"]').value = 'New Partnership Registration - Code: ' + partnerCode;
             
             // Display the partnership code to the user
             document.getElementById('partnerCode').textContent = partnerCode;
-            
-            // Hide the form and show success message after a delay
+
+            form.target = 'partnershipSubmitFrame';
+            HTMLFormElement.prototype.submit.call(form);
+
             setTimeout(function() {
-                document.getElementById('partnershipLoading').style.display = 'none';
-                document.getElementById('partnershipSuccess').style.display = 'block';
-                document.getElementById('partnershipFormSubmit').style.display = 'none';
-                window.scrollTo({
-                    top: document.getElementById('partnershipForm').offsetTop,
-                    behavior: 'smooth'
-                });
-            }, 1500);
+                loading.style.display = 'none';
+                success.style.display = 'block';
+                form.style.display = 'none';
+            }, 800);
+
+            window.scrollTo({
+                top: document.getElementById('partnershipForm').offsetTop,
+                behavior: 'smooth'
+            });
+        });
+
+        document.getElementById('newPartnershipBtn')?.addEventListener('click', function() {
+            const form = document.getElementById('partnershipFormSubmit');
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            form.reset();
+            form.removeAttribute('target');
+            form.style.display = 'block';
+            document.getElementById('partnershipSuccess').style.display = 'none';
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Partnership Application';
+            }
+            window.scrollTo({
+                top: document.getElementById('partnershipForm').offsetTop,
+                behavior: 'smooth'
+            });
         });
         
         // International form submission
